@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AINautics Drone Academy</title>
+<meta name="description" content="AINautics trains drone pilots in Columbia, South Carolina, from elementary school to FAA Part 107 certification, and puts them to work through a nationwide pilot network.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
+<style>
+:root{
+  --blue:#1633B5;          /* handbook cover */
+  --blue-deep:#0F2385;
+  --blue-ink:#0A1230;      /* navy-black ink */
+  --paper:#F2F4F7;         /* cool bond paper */
+  --paper-2:#E6EAF1;
+  --rule:#C9D0DE;
+  --ink:#0A1230;
+  --ink-2:#39425E;
+  --on-blue:#FFFFFF;
+  --on-blue-2:#C9D3FF;
+  --yellow:#FFC629;        /* signal / action */
+  --magenta:#B0126E;       /* sectional-chart magenta: schools, new */
+  --tab-w:46px;
+  --gutter:clamp(16px,4vw,56px);
+  --max:1320px;
+  --display:"Archivo","Arial Narrow",Helvetica,Arial,sans-serif;
+  --body:"Public Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;caret-color:var(--blue);scrollbar-color:var(--blue) var(--paper-2)}
+::selection{background:var(--yellow);color:var(--blue-ink)}
+img{max-width:100%;display:block}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:2px}
+.on-paper :focus-visible{outline-color:var(--blue)}
+h1,h2,h3,h4{font-family:var(--display);font-stretch:125%;font-weight:800;letter-spacing:-.02em;line-height:1.02;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+@media (min-width:1100px){body{padding-right:var(--tab-w)}}
+.skip{position:absolute;left:-9999px;top:0;background:var(--yellow);color:var(--ink);padding:.75rem 1rem;z-index:100;font-weight:700}
+.skip:focus{left:1rem;top:1rem}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.6em;min-height:48px;padding:.8rem 1.35rem;border-radius:2px;font-family:var(--display);font-stretch:112%;font-weight:700;font-size:1rem;letter-spacing:.005em;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s var(--ease-out),color .2s var(--ease-out),border-color .2s var(--ease-out),transform .2s var(--ease-out)}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .25s var(--ease-out)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--yellow);color:var(--blue-ink)}
+.btn-primary:hover{background:#FFD65E}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.on-paper .btn-ghost:hover{background:rgba(22,51,181,.07)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:var(--blue-deep)}
+
+/* ---------- Top bar ---------- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:40;color:#fff;transition:background-color .35s var(--ease-out),color .35s var(--ease-out),box-shadow .35s var(--ease-out);padding-top:env(safe-area-inset-top,0px)}
+@media (min-width:1100px){.bar{right:var(--tab-w)}}
+.bar.is-paper{background:rgba(242,244,247,.94);color:var(--ink);box-shadow:0 1px 0 var(--rule);backdrop-filter:saturate(1.2) blur(10px);-webkit-backdrop-filter:saturate(1.2) blur(10px)}
+.bar-in{display:flex;align-items:center;gap:1.5rem;min-height:72px}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;margin-right:auto}
+.brand svg{width:30px;height:30px}
+.brand b{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
+.nav{display:none;gap:1.6rem;font-family:var(--display);font-stretch:108%;font-weight:600;font-size:.95rem}
+.nav a{text-decoration:none;padding-block:.4rem;background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;transition:background-size .3s var(--ease-out)}
+.nav a:hover{background-size:100% 1.5px}
+.bar .btn{min-height:42px;padding:.55rem 1rem;font-size:.92rem}
+.bar-phone{display:none;font-family:var(--display);font-stretch:108%;font-weight:600;font-size:.95rem;text-decoration:none}
+@media (min-width:900px){.nav{display:flex}}
+@media (min-width:1240px){.bar-phone{display:inline}}
+
+/* ---------- Thumb index (signature) ---------- */
+.tabs{display:none}
+@media (min-width:1100px){
+  .tabs{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;width:var(--tab-w);z-index:45;background:var(--blue-ink)}
+  .tab{flex:1;position:relative;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--c-fg);background:var(--c);border-top:1px solid rgba(255,255,255,.14);overflow:visible}
+  .tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--display);font-stretch:118%;font-weight:700;font-size:.92rem;letter-spacing:.01em;white-space:nowrap}
+  .tab i{font-style:normal;font-family:var(--display);font-weight:800;font-stretch:125%;position:absolute;top:.8rem;left:0;right:0;text-align:center;font-size:.85rem;opacity:.75}
+  .tab::before{content:"";position:absolute;top:0;bottom:0;right:100%;width:0;background:var(--c);transition:width .45s var(--ease-out)}
+  .tab:hover::before{width:8px}
+  .tab.is-active::before{width:14px}
+  .tab.is-active{box-shadow:inset 3px 0 0 rgba(255,255,255,.55)}
+}
+.t-schools{--c:var(--magenta);--c-fg:#fff}
+.t-pilots{--c:var(--blue);--c-fg:#fff}
+.t-business{--c:var(--yellow);--c-fg:var(--blue-ink)}
+.t-amb{--c:#2A3352;--c-fg:#fff}
+
+/* ---------- Cover ---------- */
+.cover{background:var(--blue);color:var(--on-blue);position:relative;overflow:hidden;padding-top:calc(72px + env(safe-area-inset-top,0px))}
+.cover::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 120px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 120px);
+  mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+.cover-in{position:relative;z-index:1;display:grid;gap:clamp(2rem,4vw,4rem);padding-block:clamp(2.5rem,6vw,5.5rem) clamp(3rem,6vw,5.5rem);align-items:end}
+@media (min-width:960px){.cover-in{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.edition{display:flex;flex-wrap:wrap;gap:.35rem 1.25rem;font-family:var(--display);font-stretch:100%;font-weight:600;font-size:.9rem;color:var(--on-blue-2);margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+.edition span+span::before{content:"";display:inline-block;width:18px;height:1px;background:currentColor;vertical-align:middle;margin-right:1.25rem;opacity:.6}
+.edition{flex-direction:column}@media (min-width:600px){.edition{flex-direction:row}}.edition span+span::before{content:none}@media (min-width:600px){.edition span+span::before{content:""}}
+.cover h1{font-size:clamp(2.6rem,6.3vw,5.4rem);letter-spacing:-.035em;line-height:.95}
+.cover h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.cover h1 .ln>span{display:block}
+.lede{max-width:34em;margin-top:clamp(1.25rem,2.5vw,2rem);font-size:clamp(1.08rem,1.4vw,1.25rem);line-height:1.55;color:#E8EDFF}
+.cover-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.doors{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:2.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.25);font-family:var(--display);font-stretch:108%;font-weight:600;font-size:.95rem}
+.doors a{text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+.doors a::before{content:"";width:10px;height:10px;background:var(--c);outline:1.5px solid rgba(255,255,255,.7);outline-offset:-1px}
+.doors a:hover{text-decoration:underline}
+
+/* Figure plates */
+.plate{margin:0;background:#fff;padding:clamp(10px,1.1vw,14px);box-shadow:0 30px 60px -30px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.14);color:var(--ink)}
+.plate .img{position:relative;overflow:hidden;background:var(--paper-2)}
+.plate img{width:100%;height:100%;object-fit:cover}
+.plate figcaption,.fig-cap{display:flex;gap:.9rem;align-items:baseline;padding-top:.7rem;font-size:.86rem;line-height:1.4;color:var(--ink-2)}
+.fig-no{font-family:var(--display);font-stretch:112%;font-weight:800;color:var(--ink);white-space:nowrap}
+.cover .plate{transform:rotate(1.2deg)}
+.cover .plate .img{aspect-ratio:4/5}
+.callout{position:absolute;display:flex;align-items:center;gap:.5rem;font-family:var(--display);font-stretch:108%;font-weight:700;font-size:.78rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.callout::before{content:"";width:9px;height:9px;border-radius:50%;border:2px solid var(--yellow);background:rgba(10,18,48,.3);flex:none}
+.callout::after{content:"";height:1.5px;width:42px;background:var(--yellow);order:-1;display:none}
+
+/* ---------- Spec sheet ---------- */
+.spec{padding-block:clamp(3.5rem,7vw,6rem)}
+.spec-head{display:grid;gap:1rem 3rem;align-items:end;margin-bottom:clamp(2rem,4vw,3rem)}
+@media (min-width:900px){.spec-head{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}}
+.spec-head h2{font-size:clamp(2rem,4vw,3.25rem)}
+.spec-head p{color:var(--ink-2);max-width:36em}
+.spec-table{display:grid;border-top:2px solid var(--ink)}
+@media (min-width:700px){.spec-table{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:3rem}}
+@media (min-width:1100px){.spec-table{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.spec-row{display:grid;grid-template-rows:auto 1fr;gap:.5rem;padding:1.4rem 0 1.6rem;border-bottom:1px solid var(--rule)}
+.spec-val{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(2.6rem,4.6vw,4rem);line-height:1;letter-spacing:-.03em;color:var(--blue)}
+.spec-val small{font-size:.5em;letter-spacing:0;margin-left:.05em}
+.spec-lbl{font-size:.98rem;color:var(--ink-2);max-width:22em}
+.spec-lbl b{color:var(--ink)}
+
+/* ---------- Flight path ---------- */
+.path{background:var(--blue-ink);color:#fff;padding-block:clamp(4rem,8vw,7rem);overflow:hidden}
+.path h2{font-size:clamp(2.2rem,5vw,4.25rem);max-width:13em}
+.path .intro{max-width:38em;margin-top:1.25rem;color:#C7CEE8;font-size:1.1rem}
+.route{position:relative;margin-top:clamp(2.5rem,5vw,4rem)}
+.route svg{width:100%;height:auto;display:block;overflow:visible}
+.route .track{stroke:rgba(255,255,255,.18);stroke-width:2;stroke-dasharray:3 7;fill:none}
+.route .flown{stroke:var(--yellow);stroke-width:3;fill:none;stroke-linecap:round}
+.route .wp{fill:var(--blue-ink);stroke:var(--yellow);stroke-width:3}
+.route .alt{fill:#8E98BF;font:600 12px var(--body)}
+.stages{display:grid;gap:2rem 2.5rem;margin-top:1.5rem;counter-reset:st}
+@media (min-width:700px){.stages{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1100px){.stages{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stage{border-top:1px solid rgba(255,255,255,.22);padding-top:1.1rem}
+.stage h3{font-size:1.55rem;display:flex;align-items:baseline;gap:.7rem}
+.stage h3 .n{font-size:.95rem;color:var(--yellow);font-stretch:112%}
+.stage p{color:#C7CEE8;margin-top:.6rem;font-size:1rem}
+.stage a{display:inline-block;margin-top:.9rem;color:#fff;font-family:var(--display);font-stretch:108%;font-weight:700;font-size:.95rem}
+
+/* ---------- Chapters ---------- */
+.chapter{position:relative;padding-block:clamp(4rem,8vw,7.5rem);scroll-margin-top:60px}
+.ch-open{display:grid;gap:1.25rem 3rem;align-items:end;margin-bottom:clamp(2.5rem,5vw,4rem)}
+@media (min-width:900px){.ch-open{grid-template-columns:auto minmax(0,1fr)}}
+.ch-tab{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;width:clamp(8.5rem,14vw,11rem);aspect-ratio:1/1.12;padding:1rem 1.1rem;background:var(--c);color:var(--c-fg);font-family:var(--display);font-weight:800;font-stretch:125%}
+.ch-tab .big{font-size:clamp(4rem,8vw,6.2rem);line-height:.8;letter-spacing:-.05em}
+.ch-tab .word{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.9rem;font-stretch:110%;font-weight:700;letter-spacing:.01em;align-self:flex-start}
+.ch-open h2{font-size:clamp(2.3rem,5.4vw,4.6rem);letter-spacing:-.03em;max-width:12em}
+.ch-open p{margin-top:1.1rem;color:var(--ink-2);font-size:1.12rem;max-width:40em}
+
+/* Schools: K-5 feature */
+.k5{display:grid;gap:clamp(1.5rem,4vw,4rem);align-items:center}
+@media (min-width:980px){.k5{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.k5 .plate .img{aspect-ratio:3/2}
+.new-flag{display:inline-flex;align-items:center;gap:.55rem;background:var(--magenta);color:#fff;font-family:var(--display);font-stretch:112%;font-weight:700;font-size:.88rem;padding:.35rem .7rem .35rem .55rem;border-radius:2px}
+.new-flag svg{width:16px;height:16px}
+.k5 h3{font-size:clamp(1.9rem,3.4vw,2.9rem);margin-top:1.1rem;letter-spacing:-.025em}
+.k5 .copy p{margin-top:1rem;color:var(--ink-2);max-width:32em}
+.k5 ul{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.65rem}
+.k5 li{display:grid;grid-template-columns:22px 1fr;gap:.75rem;align-items:start}
+.k5 li svg{width:20px;height:20px;margin-top:.2rem;color:var(--magenta)}
+.k5 .btn{margin-top:1.8rem}
+
+/* Ladder */
+.ladder{margin-top:clamp(3.5rem,7vw,6rem)}
+.ladder-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.5rem}
+.ladder-head h3{font-size:clamp(1.6rem,2.8vw,2.3rem)}
+.ladder-head p{color:var(--ink-2);max-width:30em}
+.rungs{display:grid;border-top:2px solid var(--ink)}
+@media (min-width:760px){.rungs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1140px){.rungs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.rung{padding:1.5rem 1.5rem 1.75rem 0;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.7rem}
+@media (min-width:1140px){.rung+.rung{padding-left:1.5rem;border-left:1px solid var(--rule)}}
+.rung .grade{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:1.9rem;letter-spacing:-.03em;color:var(--blue)}
+.rung.is-new .grade{color:var(--magenta)}
+.rung h4{font-size:1.1rem;font-stretch:110%;letter-spacing:-.005em}
+.rung p{color:var(--ink-2);font-size:.98rem}
+.rung .meta{margin-top:auto;padding-top:.5rem;font-size:.88rem;color:var(--ink);font-weight:700}
+
+/* Mobile lab + quote */
+.lab{display:grid;gap:clamp(1.5rem,4vw,4rem);margin-top:clamp(3.5rem,7vw,6rem);align-items:center}
+@media (min-width:980px){.lab{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.lab h3{font-size:clamp(1.7rem,3vw,2.5rem)}
+.lab p{margin-top:1rem;color:var(--ink-2);max-width:34em}
+.lab .plate .img{aspect-ratio:3/2}
+blockquote{margin:0}
+.quote{margin-top:clamp(3.5rem,7vw,6rem);display:grid;gap:1.5rem;padding-top:2rem;border-top:2px solid var(--ink)}
+@media (min-width:900px){.quote{grid-template-columns:minmax(0,3fr) minmax(0,9fr)}}
+.quote .who{font-size:.95rem;color:var(--ink-2)}
+.quote .who b{display:block;color:var(--ink);font-family:var(--display);font-stretch:110%;font-size:1rem}
+.quote p{font-family:var(--display);font-stretch:100%;font-weight:600;font-size:clamp(1.45rem,2.6vw,2.2rem);line-height:1.22;letter-spacing:-.015em;text-wrap:pretty;max-width:30em}
+.quote p::before{content:"\201C"}
+.quote p::after{content:"\201D"}
+
+/* Partners marquee (Magic UI marquee pattern) */
+.partners{border-block:1px solid var(--rule);margin-top:clamp(3rem,6vw,5rem);padding-block:1.4rem;overflow:hidden;--gap:3.5rem;--dur:48s}
+.partners h3{font-family:var(--body);font-stretch:100%;font-weight:700;font-size:.95rem;letter-spacing:0;color:var(--ink-2);margin-bottom:1rem}
+.marquee{display:flex;gap:var(--gap);overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee ul{display:flex;flex:none;gap:var(--gap);list-style:none;margin:0;padding:0;min-width:100%;justify-content:space-around;animation:mq var(--dur) linear infinite}
+.marquee:hover ul{animation-play-state:paused}
+.marquee li{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(1.05rem,1.6vw,1.35rem);white-space:nowrap;color:var(--ink)}
+@keyframes mq{to{transform:translateX(calc(-100% - var(--gap)))}}
+@media (prefers-reduced-motion:reduce){.marquee ul{animation:none;flex:1 1 auto;flex-wrap:wrap;justify-content:flex-start;row-gap:.75rem;column-gap:2.5rem}.marquee ul[aria-hidden]{display:none}.marquee{mask-image:none;-webkit-mask-image:none}}
+
+/* Pilots */
+.pilots{background:var(--paper-2)}
+.pilot-grid{display:grid;gap:clamp(1.5rem,4vw,4rem)}
+@media (min-width:1020px){.pilot-grid{grid-template-columns:minmax(0,8fr) minmax(0,4fr);align-items:start}}
+.courses{width:100%;border-collapse:collapse;font-size:.98rem}
+.courses caption{text-align:left;font-family:var(--display);font-stretch:112%;font-weight:700;font-size:1rem;padding-bottom:.9rem;color:var(--ink-2)}
+.courses th,.courses td{text-align:left;vertical-align:top;padding:1.1rem 1rem 1.1rem 0;border-bottom:1px solid var(--rule)}
+.courses thead th{font-family:var(--display);font-stretch:110%;font-weight:700;font-size:.85rem;color:var(--ink-2);border-bottom:2px solid var(--ink);padding-block:.6rem}
+.courses tbody th{font-family:var(--display);font-stretch:112%;font-weight:800;font-size:1.08rem;letter-spacing:-.01em;width:34%}
+.courses tbody th small{display:block;font-family:var(--body);font-weight:400;font-stretch:100%;font-size:.92rem;color:var(--ink-2);margin-top:.3rem;letter-spacing:0}
+.courses td{color:var(--ink-2)}
+.courses td b{color:var(--ink)}
+.chip{display:inline-block;font-family:var(--display);font-stretch:108%;font-weight:700;font-size:.78rem;padding:.15rem .45rem;border:1.5px solid currentColor;border-radius:2px;color:var(--blue);margin:0 .3rem .3rem 0;white-space:nowrap}
+@media (max-width:719px){
+  .courses thead{position:absolute;left:-9999px}
+  .courses tr{display:block;padding-block:1rem;border-bottom:1px solid var(--rule)}
+  .courses tbody th,.courses td{display:block;width:auto;border:0;padding:.15rem 0}
+  .courses td[data-l]::before{content:attr(data-l) ": ";font-weight:700;color:var(--ink)}
+}
+.pilot-side{display:grid;gap:2rem}
+.pilot-side .plate .img{aspect-ratio:4/5}
+.side-quote{border-top:2px solid var(--ink);padding-top:1.1rem}
+.side-quote p{font-family:var(--display);font-weight:600;font-stretch:100%;font-size:1.2rem;line-height:1.35;letter-spacing:-.01em}
+.side-quote footer{margin-top:.7rem;font-size:.92rem;color:var(--ink-2)}
+.wide{margin-top:clamp(3rem,6vw,5rem)}
+.wide .plate .img{aspect-ratio:16/7}
+.wide-row{display:grid;gap:1.5rem 3rem;margin-top:1.75rem;align-items:start}
+@media (min-width:900px){.wide-row{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.wide-row h3{font-size:clamp(1.6rem,2.8vw,2.3rem)}
+.wide-row p{color:var(--ink-2)}
+.wide-row ul{margin:1rem 0 0;padding-left:1.1rem;color:var(--ink-2)}
+
+/* Business */
+.biz-grid{display:grid;gap:clamp(1.5rem,4vw,3.5rem)}
+@media (min-width:980px){.biz-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.biz-grid .plate .img{aspect-ratio:3/2}
+.biz-grid .plate.sq .img{aspect-ratio:3/2}
+.services{margin-top:clamp(2.5rem,5vw,4rem);display:grid;border-top:2px solid var(--ink)}
+@media (min-width:760px){.services{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:3rem}}
+@media (min-width:1140px){.services{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.svc{padding:1.3rem 0 1.5rem;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:40px 1fr;gap:1rem}
+.svc svg{width:32px;height:32px;color:var(--blue)}
+.svc h3{font-size:1.2rem;font-stretch:112%;letter-spacing:-.01em}
+.svc p{margin-top:.35rem;color:var(--ink-2);font-size:.98rem}
+.ifly{margin-top:clamp(3.5rem,7vw,6rem);background:var(--yellow);color:var(--blue-ink);padding:clamp(2rem,4vw,3.5rem)}
+.ifly-head{display:grid;gap:1rem 3rem;align-items:end}
+@media (min-width:900px){.ifly-head{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.ifly h3{font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:-.03em}
+.ifly-head p{font-size:1.05rem}
+.steps{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:0;border-top:2px solid var(--blue-ink);counter-reset:s}
+@media (min-width:760px){.steps{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.steps li{counter-increment:s;padding:1.1rem 1.2rem 1.2rem 0;border-bottom:1px solid rgba(10,18,48,.25)}
+@media (min-width:760px){.steps li{border-bottom:0}.steps li+li{padding-left:1.2rem;border-left:1px solid rgba(10,18,48,.25)}}
+.steps li::before{content:counter(s);display:block;font-family:var(--display);font-stretch:125%;font-weight:800;font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+.steps b{display:block;font-family:var(--display);font-stretch:110%;font-size:1.05rem}
+.steps span{display:block;font-size:.95rem;margin-top:.3rem}
+.ifly-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.ifly .btn-ghost:hover{background:rgba(10,18,48,.08)}
+
+/* Ambassadors */
+.amb{background:var(--blue-ink);color:#fff}
+.amb .ch-open p{color:#C7CEE8}
+.amb-grid{display:grid;gap:clamp(1.5rem,4vw,4rem);align-items:start}
+@media (min-width:980px){.amb-grid{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}}
+.amb .plate{color:var(--ink)}
+.amb .plate .img{aspect-ratio:3/2}
+.kit{list-style:none;margin:0;padding:0;border-top:1px solid rgba(255,255,255,.3)}
+.kit li{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:1.25rem;padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.kit b{font-family:var(--display);font-stretch:112%;font-size:1.1rem}
+.kit span{color:#C7CEE8}
+.amb .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem;align-items:center}
+.amb .cta-row small{color:#C7CEE8;font-size:.95rem}
+.init{margin-top:clamp(3.5rem,7vw,6rem);padding-top:2rem;border-top:2px solid rgba(255,255,255,.6);display:grid;gap:1.5rem 3rem}
+@media (min-width:900px){.init{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.init h3{font-size:clamp(1.6rem,2.8vw,2.3rem)}
+.init p{color:#C7CEE8;margin-top:1rem}
+.pillars{display:flex;flex-wrap:wrap;gap:.6rem;align-content:start}
+.pillars li{list-style:none;font-family:var(--display);font-stretch:110%;font-weight:700;font-size:1rem;padding:.7rem 1rem;border:1.5px solid rgba(255,255,255,.55);border-radius:2px}
+.pillars{margin:0;padding:0}
+
+/* About */
+.about{padding-block:clamp(4rem,8vw,7rem)}
+.about-grid{display:grid;gap:2rem 4rem}
+@media (min-width:980px){.about-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.about h2{font-size:clamp(2.2rem,4.6vw,3.8rem);letter-spacing:-.03em}
+.about .mission{margin-top:1.5rem;font-size:1.2rem;max-width:34em}
+.about .mission+p{margin-top:1rem;color:var(--ink-2);max-width:36em}
+.facts{margin:0;display:grid;border-top:2px solid var(--ink);align-self:start}
+.facts div{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:1rem;padding:.95rem 0;border-bottom:1px solid var(--rule)}
+.facts dt{font-family:var(--display);font-stretch:110%;font-weight:700}
+.facts dd{margin:0;color:var(--ink-2)}
+
+/* Contact */
+.contact{background:var(--blue);color:#fff;padding-block:clamp(4rem,8vw,7rem)}
+.contact-grid{display:grid;gap:2.5rem 4rem}
+@media (min-width:980px){.contact-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.contact h2{font-size:clamp(2.3rem,5vw,4.2rem);letter-spacing:-.03em}
+.contact .sub{margin-top:1.2rem;color:#E8EDFF;max-width:30em;font-size:1.1rem}
+.reach{margin-top:2rem;display:grid;gap:1.1rem;font-size:1.05rem}
+.reach b{display:block;font-family:var(--display);font-stretch:110%;font-weight:700;font-size:.9rem;color:var(--on-blue-2)}
+.reach a{font-family:var(--display);font-stretch:112%;font-weight:700;font-size:1.3rem;text-decoration:none}
+.reach a:hover{text-decoration:underline}
+form{background:var(--paper);color:var(--ink);padding:clamp(1.5rem,3vw,2.5rem);display:grid;gap:1.1rem}
+@media (min-width:640px){form{grid-template-columns:1fr 1fr}.full{grid-column:1/-1}}
+form h3{font-size:1.5rem;grid-column:1/-1}
+.field{display:grid;gap:.4rem}
+label{font-family:var(--display);font-stretch:108%;font-weight:700;font-size:.95rem}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1.5px solid #9AA4BD;border-radius:2px;padding:.75rem .85rem;min-height:48px;width:100%;transition:border-color .2s}
+input:hover,select:hover,textarea:hover{border-color:var(--ink-2)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(22,51,181,.22)}
+textarea{min-height:110px;resize:vertical}
+.hint{font-size:.88rem;color:var(--ink-2)}
+.err{font-size:.9rem;color:#A3102B;font-weight:700;min-height:0}
+[aria-invalid="true"]{border-color:#A3102B}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.sent{grid-column:1/-1;background:#fff;border:1.5px solid var(--blue);padding:1rem 1.1rem;font-weight:700}
+
+/* Footer */
+footer.site{background:var(--blue-ink);color:#C7CEE8;padding-block:3.5rem 2.5rem;font-size:.95rem}
+.foot-grid{display:grid;gap:2rem}
+@media (min-width:900px){.foot-grid{grid-template-columns:minmax(0,4fr) repeat(3,minmax(0,2fr))}}
+.foot-grid h3{font-family:var(--display);font-stretch:110%;font-weight:700;font-size:.95rem;color:#fff;margin-bottom:.8rem;letter-spacing:0}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+.foot-grid a{text-decoration:none}
+.foot-grid a:hover{color:#fff;text-decoration:underline}
+.foot-brand p{margin-top:1rem;max-width:26em}
+.foot-base{margin-top:3rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;font-size:.88rem}
+.credit{color:#fff}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="7" cy="7" r="4.6"/><circle cx="25" cy="7" r="4.6"/><circle cx="7" cy="25" r="4.6"/><circle cx="25" cy="25" r="4.6"/><path d="M10.3 10.3l11.4 11.4M21.7 10.3L10.3 21.7"/></g><rect x="13" y="13" width="6" height="6" fill="currentColor"/></symbol>
+  <symbol id="arrow" viewBox="0 0 20 20"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+  <symbol id="check" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+  <symbol id="spark" viewBox="0 0 20 20"><path d="M10 1.5l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5L1.5 10 8 8z" fill="currentColor"/></symbol>
+</svg>
+
+<header class="bar" id="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top" aria-label="AINautics home"><svg aria-hidden="true"><use href="#mark"/></svg><b>AINautics</b></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#schools">Schools</a>
+      <a href="#pilots">Courses</a>
+      <a href="#business">Drone services</a>
+      <a href="#ambassadors">Start a school</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="bar-phone num" href="tel:+18036031387">(803) 603-1387</a>
+    <a class="btn btn-primary" href="#contact">Enroll</a>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Choose your path">
+  <a class="tab t-schools" href="#schools" data-tab="schools"><i>1</i><span>Schools</span></a>
+  <a class="tab t-pilots" href="#pilots" data-tab="pilots"><i>2</i><span>Pilots</span></a>
+  <a class="tab t-business" href="#business" data-tab="business"><i>3</i><span>Business</span></a>
+  <a class="tab t-amb" href="#ambassadors" data-tab="ambassadors"><i>4</i><span>Ambassadors</span></a>
+</nav>
+
+<main id="main">
+<!-- Cover -->
+<section class="cover" id="top" aria-labelledby="h-cover">
+  <div class="wrap cover-in">
+    <div>
+      <p class="edition"><span>Columbia, South Carolina</span><span class="num">Training pilots since 2013</span></p>
+      <h1 id="h-cover"><span class="ln"><span>Trained here.</span></span><span class="ln"><span>Flying</span></span><span class="ln"><span>everywhere.</span></span></h1>
+      <p class="lede">AINautics has trained more than 5,000 drone pilots, from teens and veterans to working professionals. We take you from your first flight to your FAA certificate, then put you to work through a nationwide pilot network.</p>
+      <div class="cover-cta">
+        <a class="btn btn-primary" href="#pilots">Find your program <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#business">Hire a pilot</a>
+      </div>
+      <div class="doors" aria-label="Jump to your chapter">
+        <a href="#schools" class="t-schools">For schools</a>
+        <a href="#pilots" class="t-pilots">For pilots</a>
+        <a href="#business" class="t-business">For businesses</a>
+        <a href="#ambassadors" class="t-amb">Start a drone school</a>
+      </div>
+    </div>
+    <figure class="plate hero-plate">
+      <div class="img">
+        <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/e1965a4b-aa34-493b-8ce3-9da4bccac800.webp" width="1280" height="1600" alt="A quadcopter drone hovering over a misty field at sunrise while an instructor holds the controller in the foreground" fetchpriority="high">
+        <span class="callout" style="left:56%;top:34%">Rotor plane, level hover</span>
+        <span class="callout" style="left:8%;bottom:9%">Pilot in command</span>
+      </div>
+      <figcaption><span class="fig-no">Fig. 1</span><span>A training flight. Every AINautics course pairs FAA ground school with hours at the controls.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Spec sheet -->
+<section class="spec on-paper" aria-labelledby="h-spec">
+  <div class="wrap">
+    <div class="spec-head">
+      <h2 id="h-spec">The record, in numbers.</h2>
+      <p>Most drone courses stop at theory. AINautics pairs FAA exam prep with hands-on flying, so graduates pass the test and are ready for real work.</p>
+    </div>
+    <div class="spec-table">
+      <div class="spec-row"><div class="spec-val num"><span data-count="5000">5,000</span><small>+</small></div><p class="spec-lbl"><b>Pilots trained</b>, including teens, veterans and working professionals.</p></div>
+      <div class="spec-row"><div class="spec-val num"><span data-count="92">92</span><small>%</small></div><p class="spec-lbl"><b>FAA Part 107 pass rate</b> in the program's first term at Denmark Technical College.</p></div>
+      <div class="spec-row"><div class="spec-val num"><span data-count="2013" data-plain>2013</span></div><p class="spec-lbl"><b>Founded in Columbia</b> by Chris Williams. More than a decade of drone training and services.</p></div>
+      <div class="spec-row"><div class="spec-val num"><span data-count="2024" data-plain>2024</span></div><p class="spec-lbl"><b>Small Business of the Year</b>, Columbia Chamber of Commerce.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Flight path -->
+<section class="path" aria-labelledby="h-path">
+  <div class="wrap">
+    <h2 id="h-path">One company for the whole flight path.</h2>
+    <p class="intro">Other schools hand you a certificate and wish you luck. AINautics trains you, certifies you, finds you paid work, and can even help you open a school of your own.</p>
+    <div class="route" aria-hidden="true">
+      <svg viewBox="0 0 1200 240" preserveAspectRatio="none">
+        <path class="track" d="M20 220 C 180 220, 220 150, 320 140 S 520 120, 600 100 S 800 60, 880 55 S 1100 25, 1180 20"/>
+        <path class="flown" id="flown" d="M20 220 C 180 220, 220 150, 320 140 S 520 120, 600 100 S 800 60, 880 55 S 1100 25, 1180 20"/>
+        <circle class="wp" cx="20" cy="220" r="8"/><circle class="wp" cx="320" cy="140" r="8"/><circle class="wp" cx="600" cy="100" r="8"/><circle class="wp" cx="880" cy="55" r="8"/><circle class="wp" cx="1180" cy="20" r="8"/>
+      </svg>
+    </div>
+    <div class="stages">
+      <div class="stage"><h3><span class="n">1</span>Learn</h3><p>Ground school, flight simulators and hands-on flying, in Columbia, online, or at your school. It can start as early as kindergarten.</p><a href="#schools">Schools and students</a></div>
+      <div class="stage"><h3><span class="n">2</span>Certify</h3><p>Prepare for the FAA Part 107 Remote Pilot exam, the license you need to fly commercially. You can take it from age 16.</p><a href="#pilots">Certification courses</a></div>
+      <div class="stage"><h3><span class="n">3</span>Fly for pay</h3><p>Join the pilot network and job board, and take paid missions through iFlyDrone, our nationwide marketplace.</p><a href="#business">Pilot network</a></div>
+      <div class="stage"><h3><span class="n">4</span>Teach</h3><p>Open your own drone school with AINautics curriculum, business tools and mentorship through the Ambassador Program.</p><a href="#ambassadors">Ambassador Program</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter 1: Schools -->
+<section class="chapter on-paper" id="schools" data-chapter="schools" aria-labelledby="h-schools">
+  <div class="wrap">
+    <header class="ch-open">
+      <div class="ch-tab t-schools" aria-hidden="true"><span class="big">1</span><span class="word">Schools</span></div>
+      <div>
+        <h2 id="h-schools">A drone program for every grade, <span style="white-space:nowrap">K&ndash;12</span> through college.</h2>
+        <p>Turnkey curriculum, certified instructors and a mobile lab that comes to you. AINautics already runs drone pathways in South Carolina high schools, technical colleges and universities. Now it starts in elementary school too.</p>
+      </div>
+    </header>
+
+    <div class="k5">
+      <figure class="plate">
+        <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/c5da86e2-3a4a-4492-8307-a173e3ef8213.webp" width="1800" height="1195" loading="lazy" alt="Young children sitting on a classroom carpet watching a small guarded drone hover while a girl flies it with a simple controller"></div>
+        <figcaption><span class="fig-no">Fig. 1.1</span><span>First flights happen indoors, with palm-sized drones and prop guards.</span></figcaption>
+      </figure>
+      <div class="copy">
+        <span class="new-flag"><svg aria-hidden="true"><use href="#spark"/></svg>New program</span>
+        <h3>Now enrolling elementary schools, grades K&ndash;5.</h3>
+        <p>AINautics is bringing drones into elementary classrooms. Young students learn how things fly, how to fly safely, and how to work as a crew, all through play they can steer themselves.</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><span>Hands-on lessons with small, classroom-safe drones</span></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><span>Early STEM: the science of lift, weather and maps</span></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><span>Simulator visits from the AINautics Mobile Lab</span></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><span>The first step on a path that leads to FAA certification at 16</span></li>
+        </ul>
+        <a class="btn btn-blue" href="#contact" data-interest="K-5 elementary program">Bring it to your school <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+      </div>
+    </div>
+
+    <div class="ladder">
+      <div class="ladder-head">
+        <h3>The AINautics ladder</h3>
+        <p>Each program leads to the next, so a student can grow from a first flight to a career without changing schools.</p>
+      </div>
+      <div class="rungs">
+        <article class="rung is-new"><span class="grade">K&ndash;5</span><h4>Elementary</h4><p>Play-based flight, safety and early STEM, with classroom-safe drones and simulator days.</p><span class="meta">New for 2026</span></article>
+        <article class="rung"><span class="grade">6&ndash;12</span><h4>Middle and high school</h4><p>STEM and CTE pathways, from Part 107 prep to drone engineering and operations. Students can earn the FAA certificate at 16.</p><span class="meta">UAS Student Scholars</span></article>
+        <article class="rung"><span class="grade">College</span><h4>Colleges and universities</h4><p>From single-day intensives to semester-long courses, taken for credit or not. Built to lead to jobs.</p><span class="meta">92% first-term pass rate</span></article>
+        <article class="rung"><span class="grade">Home</span><h4>Homeschool and community</h4><p>Drone training that fits homeschool plans, plus free workforce programs with partners like Goodwill.</p><span class="meta">ELEVATE, ages 16 and up</span></article>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div>
+        <h3>The Mobile Lab comes to your campus.</h3>
+        <p>A bus converted into a virtual reality and drone simulation lab. It parks at your school, event or career day, and students try flight simulators and VR before they ever touch a real aircraft.</p>
+        <a class="btn btn-ghost" style="margin-top:1.5rem" href="#contact" data-interest="Mobile Lab visit">Book a Mobile Lab visit</a>
+      </div>
+      <figure class="plate">
+        <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/5b09d198-b135-4dee-b3f3-1e67f00e8ea8.webp" width="1800" height="1195" loading="lazy" alt="A navy blue bus converted into a mobile simulator lab, parked outside an elementary school while children line up at its open door"></div>
+        <figcaption><span class="fig-no">Fig. 1.2</span><span>The AINautics Mobile Lab: flight simulators and VR headsets, on wheels.</span></figcaption>
+      </figure>
+    </div>
+
+    <blockquote class="quote">
+      <div class="who"><b>High school partner</b>Ridgeland-Hardeeville High School, Jasper County</div>
+      <p>Our students and community have developed a sense of pride and determination. AINautics opened doors and minds to new opportunities.</p>
+    </blockquote>
+
+    <div class="partners">
+      <h3>Programs run with</h3>
+      <div class="marquee">
+        <ul>
+          <li>Goodwill Industries of Upstate/Midlands SC</li><li>Benedict College</li><li>Denmark Technical College</li><li>Orangeburg-Calhoun Technical College</li><li>Williamsburg Technical College</li><li>Florence 1 Schools</li><li>Jasper County School District</li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>Goodwill Industries of Upstate/Midlands SC</li><li>Benedict College</li><li>Denmark Technical College</li><li>Orangeburg-Calhoun Technical College</li><li>Williamsburg Technical College</li><li>Florence 1 Schools</li><li>Jasper County School District</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter 2: Pilots -->
+<section class="chapter pilots on-paper" id="pilots" data-chapter="pilots" aria-labelledby="h-pilots">
+  <div class="wrap">
+    <header class="ch-open">
+      <div class="ch-tab t-pilots" aria-hidden="true"><span class="big">2</span><span class="word">Pilots</span></div>
+      <div>
+        <h2 id="h-pilots">Get certified. Then get specific.</h2>
+        <p>Start with the FAA Part 107 Remote Pilot Certificate, the license every commercial drone pilot needs. Then add the specialty that gets you hired.</p>
+      </div>
+    </header>
+
+    <div class="pilot-grid">
+      <div style="overflow-x:auto">
+        <table class="courses">
+          <caption>AINautics University course catalog</caption>
+          <thead><tr><th scope="col">Course</th><th scope="col">Format</th><th scope="col">Who it's for</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">FAA Part 107 Remote Pilot Certification<small>Airspace, regulations, weather, emergency procedures and flight operations</small></th><td data-l="Format"><span class="chip">In person</span><span class="chip">Online</span><span class="chip">Self-paced</span></td><td data-l="For">Anyone 16 or older who wants to fly commercially</td></tr>
+            <tr><th scope="row">Commercial Drone Certification Bootcamp<small>An intensive course: flight maneuvers, airspace rules and aerial imaging</small></th><td data-l="Format"><span class="chip">In person</span></td><td data-l="For">Career starters who want to be <b>industry-ready fast</b></td></tr>
+            <tr><th scope="row">Drone Delivery RPIC<small>From ground school to flying a fixed-wing delivery drone yourself</small></th><td data-l="Format"><span class="chip">5 days</span><span class="chip">Columbia, SC</span></td><td data-l="For">Part 107 holders aiming at delivery pilot, fleet operations or mission coordinator roles</td></tr>
+            <tr><th scope="row">Agriculture and Farming Drone Pilot<small>Crop monitoring, land management and property inspection</small></th><td data-l="Format"><span class="chip">Hands-on</span></td><td data-l="For">Farmers, ag professionals and students. Run with a land-grant university</td></tr>
+            <tr><th scope="row">Public Safety and Tactical<small>From Part 107 prep to real-world tactical deployment</small></th><td data-l="Format"><span class="chip">2-day cohorts</span></td><td data-l="For">Officers, school resource officers, EMTs and firefighters</td></tr>
+            <tr><th scope="row">Specialized Industry Training<small>Custom courses for teams</small></th><td data-l="Format"><span class="chip">On-site</span></td><td data-l="For">Real estate, construction, inspection and emergency management teams</td></tr>
+          </tbody>
+        </table>
+        <div style="display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.75rem">
+          <a class="btn btn-blue" href="#contact" data-interest="FAA Part 107 certification">Start Part 107 training <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#contact" data-interest="Specialized or team training">Train my team</a>
+        </div>
+      </div>
+      <aside class="pilot-side">
+        <figure class="plate">
+          <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/ad2fbe2c-72ef-418f-be9b-01e617b1817d.webp" width="1280" height="1600" loading="lazy" alt="A pilot in a high-visibility vest running a pre-flight check on a drone on a truck tailgate at a rural airfield"></div>
+          <figcaption><span class="fig-no">Fig. 2.1</span><span>The pre-flight checklist: the first thing we teach and the last thing a pro skips.</span></figcaption>
+        </figure>
+        <blockquote class="side-quote">
+          <p>&ldquo;The training fully prepared me for the FAA Part 107 exam, and I passed on my first attempt.&rdquo;</p>
+          <footer>Law enforcement officer, trained at Williamsburg Technical College</footer>
+        </blockquote>
+      </aside>
+    </div>
+
+    <div class="wide">
+      <figure class="plate">
+        <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/eb88c62f-15c4-4e21-943b-3192d2b95b37.webp" width="2200" height="1244" loading="lazy" alt="A white fixed-wing delivery drone on a launch pad at a grass training field, with trainees at laptops behind it"></div>
+        <figcaption><span class="fig-no">Fig. 2.2</span><span>Drone Delivery RPIC: five days in Columbia, ending at the controls of a fixed-wing delivery aircraft.</span></figcaption>
+      </figure>
+      <div class="wide-row">
+        <h3>Where the certificate takes you.</h3>
+        <div>
+          <p>FAA certification opens work in construction, logistics, real estate, agriculture, public safety, inspection and film. Graduates join the AINautics pilot network for more training, resources and a job board built for drone work.</p>
+          <ul>
+            <li>Job placement help from our career development team</li>
+            <li>Paid missions through iFlyDrone</li>
+            <li>A community of pilots and instructors</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter 3: Business -->
+<section class="chapter on-paper" id="business" data-chapter="business" aria-labelledby="h-business">
+  <div class="wrap">
+    <header class="ch-open">
+      <div class="ch-tab t-business" aria-hidden="true"><span class="big">3</span><span class="word">Business</span></div>
+      <div>
+        <h2 id="h-business">Aerial work, flown by pilots we trained.</h2>
+        <p>Aerial photography, inspections and survey data across Georgia and the Carolinas, and anywhere in the U.S. through iFlyDrone. Every pilot is FAA certified.</p>
+      </div>
+    </header>
+
+    <div class="biz-grid">
+      <figure class="plate">
+        <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/dcfd2ef3-080f-4f54-85dd-db46b509692c.webp" width="2000" height="1328" loading="lazy" alt="Top-down aerial map of a construction site showing foundations, steel framing, red clay and equipment"></div>
+        <figcaption><span class="fig-no">Fig. 3.1</span><span>Construction progress, mapped from above: site issues and safety risks are visible at a glance.</span></figcaption>
+      </figure>
+      <figure class="plate sq">
+        <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/09098c66-1663-466b-a4c1-cecbee14ba45.webp" width="1400" height="1400" loading="lazy" alt="Thermal camera view of a commercial rooftop with bright hot spots showing a leak and warm HVAC units"></div>
+        <figcaption><span class="fig-no">Fig. 3.2</span><span>Thermal inspection finds roof trouble spots without anyone climbing a ladder.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="services">
+      <div class="svc"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 26h24M7 26V12l9-6 9 6v14M12 26v-7h8v7" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><h3>Construction</h3><p>Regular progress photos, clearer views of site issues for subcontractors, and better safety awareness.</p></div></div>
+      <div class="svc"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="currentColor"/><path d="M16 2v5M16 25v5M2 16h5M25 16h5" stroke="currentColor" stroke-width="2"/></svg><div><h3>Thermal</h3><p>Heat maps of roofs, buildings and solar arrays for energy audits and leak detection.</p></div></div>
+      <div class="svc"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24l8-10 6 6 4-5 6 9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 28h26" stroke="currentColor" stroke-width="2"/></svg><div><h3>Mapping and survey</h3><p>3D models, topographic maps and volume measurements for land development and mining.</p></div></div>
+      <div class="svc"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27h22M9 27V9h14v18M13 13h2M17 13h2M13 17h2M17 17h2M13 21h2M17 21h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><h3>Inspection</h3><p>Infrastructure, power lines and facilities, inspected with precision while crews stay safely on the ground.</p></div></div>
+      <div class="svc"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28V12M16 12c0-5 4-8 9-8 0 5-4 8-9 8zM16 18c0-4-3-7-8-7 0 4 3 7 8 7z" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><h3>Agriculture</h3><p>NDVI and multispectral maps that show crop stress, soil conditions and irrigation patterns.</p></div></div>
+      <div class="svc"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="17" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16.5" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 8l2-3h6l2 3" fill="none" stroke="currentColor" stroke-width="2"/></svg><div><h3>Photo and video</h3><p>Aerial imagery for real estate listings, weddings, events and promotional films.</p></div></div>
+    </div>
+
+    <div class="ifly">
+      <div class="ifly-head">
+        <h3>Need a pilot somewhere else? iFlyDrone.</h3>
+        <p>iFlyDrone is our marketplace, connecting clients with vetted, FAA Part 107 certified drone pilots across the entire United States.</p>
+      </div>
+      <ol class="steps">
+        <li><b>Describe the job</b><span>Project, location and timeline.</span></li>
+        <li><b>Get matched</b><span>With vetted pilots who specialize in your work.</span></li>
+        <li><b>Review and schedule</b><span>Approve a pilot and set the mission date.</span></li>
+        <li><b>Receive deliverables</b><span>Imagery and data, delivered on the platform.</span></li>
+        <li><b>Pay securely</b><span>Funds held in escrow until you approve.</span></li>
+      </ol>
+      <div class="ifly-cta">
+        <a class="btn btn-blue" href="#contact" data-interest="Drone services / request a pilot">Request a pilot <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#contact" data-interest="Join the iFlyDrone pilot network">I'm a pilot: join the network</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter 4: Ambassadors -->
+<section class="chapter amb" id="ambassadors" data-chapter="ambassadors" aria-labelledby="h-amb">
+  <div class="wrap">
+    <header class="ch-open">
+      <div class="ch-tab t-amb" aria-hidden="true" style="outline:1.5px solid rgba(255,255,255,.4);outline-offset:-1.5px"><span class="big">4</span><span class="word">Ambassadors</span></div>
+      <div>
+        <h2 id="h-amb">Start your own drone school.</h2>
+        <p>The Ambassador Program gives educators, entrepreneurs and drone enthusiasts everything they need to launch a school under the AINautics model. You don't need drone experience to start.</p>
+      </div>
+    </header>
+    <div class="amb-grid">
+      <figure class="plate">
+        <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/e4348284-779b-4d18-905d-0d19b980b7ef.webp" width="1800" height="1195" loading="lazy" alt="An instructor pointing to an aeronautical sectional chart on the wall while adult students sit at tables with drones and notebooks"></div>
+        <figcaption><span class="fig-no">Fig. 4.1</span><span>Ground school with the sectional chart, the map every Part 107 student learns to read.</span></figcaption>
+      </figure>
+      <div>
+        <ul class="kit">
+          <li><b>Curriculum</b><span>A proven, ready-to-teach curriculum, from Part 107 prep to specialized industry training. It saves months of development.</span></li>
+          <li><b>Business support</b><span>Marketing templates, pricing guides and operating tools, plus help with certifications.</span></li>
+          <li><b>Mentorship</b><span>Ongoing guidance and regular check-ins with experienced drone instructors.</span></li>
+          <li><b>Network</b><span>A community of fellow ambassadors, and room to grow into drone services or sales.</span></li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact" data-interest="Ambassador Program">Apply to the Ambassador Program <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="init">
+      <div>
+        <h3>The South Carolina Drone Initiative</h3>
+        <p>A scholarship program that closes the gaps in who gets to work in the drone industry and builds South Carolina's drone workforce. It trains 100 participants toward the FAA Part 107 certificate.</p>
+      </div>
+      <ul class="pillars" aria-label="Initiative pillars">
+        <li>Farm 50</li><li>HBCU Soars</li><li>Women in Drones</li><li>Small Business Owners</li><li>Public Service Agencies</li><li>First Responders</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about on-paper" id="about" aria-labelledby="h-about">
+  <div class="wrap about-grid">
+    <div>
+      <h2 id="h-about">Built in Columbia, South Carolina.</h2>
+      <p class="mission">Our mission is to empower individuals and communities through high-quality drone education and certification programs.</p>
+      <p>Chris Williams founded AINautics in 2013 to prepare students and professionals for the unmanned aircraft industry. Today it is a minority-owned company and a national leader in drone workforce development, working with schools, colleges, workforce agencies and public safety teams.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Founded</dt><dd class="num">2013, Columbia, SC</dd></div>
+      <div><dt>Founder</dt><dd>Chris Williams</dd></div>
+      <div><dt>Pilots trained</dt><dd class="num">5,000+</dd></div>
+      <div><dt>Recognition</dt><dd>Small Business of the Year 2024, Columbia Chamber of Commerce</dd></div>
+      <div><dt>Brands</dt><dd>AINautics, AINautics University, iFlyDrone and the AINautics Mobile Lab</dd></div>
+      <div><dt>Service area</dt><dd>Georgia, South Carolina and North Carolina, and nationwide through iFlyDrone</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact" aria-labelledby="h-contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2 id="h-contact">Tell us where you want to fly.</h2>
+      <p class="sub">A student, a school, a business or a future school owner: send a note and the AINautics team will reply within one business day.</p>
+      <div class="reach">
+        <div><b>Call</b><a class="num" href="tel:+18036031387">(803) 603-1387</a></div>
+        <div><b>Email</b><a href="mailto:info@ainautics.com">info@ainautics.com</a></div>
+        <div><b>Visit</b>1225 Laurel St., Suite 315B<br>Columbia, SC 29201</div>
+        <div><b>Hours</b>Monday to Saturday, 9:00 am to 5:30 pm</div>
+      </div>
+    </div>
+    <form id="enquiry" novalidate>
+      <h3>Send an inquiry</h3>
+      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="err" id="e-email"></span></div>
+      <div class="field"><label for="f-org">School or company <span class="hint">(optional)</span></label><input id="f-org" name="org" autocomplete="organization"></div>
+      <div class="field"><label for="f-phone">Phone <span class="hint">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field full"><label for="f-int">I'm interested in</label>
+        <select id="f-int" name="interest">
+          <option>FAA Part 107 certification</option>
+          <option>K-5 elementary program</option>
+          <option>Middle or high school program</option>
+          <option>College or university program</option>
+          <option>Mobile Lab visit</option>
+          <option>Specialized or team training</option>
+          <option>Drone services / request a pilot</option>
+          <option>Join the iFlyDrone pilot network</option>
+          <option>Ambassador Program</option>
+        </select>
+      </div>
+      <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="Number of students, location, dates, or what you need flown"></textarea></div>
+      <div class="form-foot full"><button class="btn btn-blue" type="submit">Send inquiry <svg aria-hidden="true"><use href="#arrow"/></svg></button><span class="hint">This concept form doesn't send yet.</span></div>
+      <p class="sent" id="sent" hidden role="status">Thanks. Your inquiry is ready to go. Once the site is live, it will reach the AINautics team.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" style="color:#fff"><svg aria-hidden="true" width="30" height="30"><use href="#mark"/></svg><b>AINautics</b></a>
+        <p>Drone, AI and robotics training, drone services and a nationwide pilot network. Columbia, South Carolina, since 2013.</p>
+      </div>
+      <div><h3>Learn</h3><ul><li><a href="#schools">K&ndash;12 and college programs</a></li><li><a href="#pilots">FAA Part 107</a></li><li><a href="#pilots">Drone Delivery RPIC</a></li><li><a href="#schools">Mobile Lab</a></li></ul></div>
+      <div><h3>Work</h3><ul><li><a href="#business">Drone services</a></li><li><a href="#business">iFlyDrone</a></li><li><a href="#pilots">Pilot network and job board</a></li><li><a href="#ambassadors">Ambassador Program</a></li></ul></div>
+      <div><h3>Contact</h3><ul><li><a class="num" href="tel:+18036031387">(803) 603-1387</a></li><li><a href="mailto:info@ainautics.com">info@ainautics.com</a></li><li>1225 Laurel St., Suite 315B</li><li>Columbia, SC 29201</li></ul></div>
+    </div>
+    <div class="foot-base">
+      <span class="num">&copy; 2026 AINautics</span>
+      <span class="credit">Concept site by Legend Creative.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Top bar turns to paper after the cover
+  var bar = document.getElementById('bar'), cover = document.querySelector('.cover');
+  function onScroll(){ bar.classList.toggle('is-paper', window.scrollY > cover.offsetHeight - 80); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Thumb index follows the chapter being read
+  var tabs = document.querySelectorAll('.tab');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = e.target.dataset.chapter;
+        tabs.forEach(function(t){ var on = t.dataset.tab === id; t.classList.toggle('is-active', on); if(on){t.setAttribute('aria-current','true')}else{t.removeAttribute('aria-current')} });
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('[data-chapter]').forEach(function(s){ io.observe(s); });
+
+  // Buttons preselect the inquiry topic
+  var sel = document.getElementById('f-int');
+  document.querySelectorAll('[data-interest]').forEach(function(a){
+    a.addEventListener('click', function(){ var v = a.dataset.interest; for (var i=0;i<sel.options.length;i++){ if(sel.options[i].text===v){ sel.selectedIndex=i; } } });
+  });
+
+  // Inquiry form (concept: validates, doesn't send)
+  var form = document.getElementById('enquiry');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var ok = true;
+    function check(id, msg, test){
+      var f = document.getElementById(id), e = document.getElementById('e'+id.slice(1));
+      var bad = !test(f.value.trim());
+      f.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      if(bad){ f.setAttribute('aria-describedby', e.id); } else { f.removeAttribute('aria-describedby'); }
+      e.textContent = bad ? msg : '';
+      if(bad && ok){ f.focus(); ok = false; }
+    }
+    check('f-name', 'Enter your name so we know who to reply to.', function(v){ return v.length > 1; });
+    check('f-email', 'Enter an email like name@school.org.', function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); });
+    if(ok){ document.getElementById('sent').hidden = false; }
+  });
+
+  if(!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Count-up spec numbers (Magic UI number-ticker pattern)
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var to = +el.dataset.count, plain = el.hasAttribute('data-plain');
+    if(reduce) return;
+    var from = plain ? to - 12 : 0, o = {v: from};
+    ScrollTrigger.create({trigger: el, start: 'top 90%', once: true, onEnter: function(){
+      gsap.fromTo(o, {v: from}, {v: to, duration: plain ? 1.1 : 1.6, ease: 'expo.out', onUpdate: function(){
+        var n = Math.round(o.v); el.textContent = plain ? n : n.toLocaleString('en-US');
+      }});
+    }});
+  });
+
+  if(reduce) return;
+
+  // Cover: one orchestrated entrance
+  var tl = gsap.timeline({defaults:{ease:'expo.out'}});
+  tl.from('.cover h1 .ln > span', {yPercent: 105, duration: 1.1, stagger: .09})
+    .from('.edition, .lede, .cover-cta, .doors', {y: 14, opacity: 0, duration: .9, stagger: .07}, '-=.75')
+    .from('.hero-plate', {clipPath: 'inset(100% 0 0 0)', rotate: 0, duration: 1.2}, '-=1.1')
+    .from('.hero-plate img', {scale: 1.12, duration: 1.6}, '<')
+    .from('.callout', {opacity: 0, x: -8, duration: .6, stagger: .12}, '-=.6');
+
+  // Flight path draws itself as you read the four stages
+  var flown = document.getElementById('flown');
+  var len = flown.getTotalLength();
+  gsap.set(flown, {strokeDasharray: len, strokeDashoffset: len});
+  gsap.to(flown, {strokeDashoffset: 0, ease: 'none', scrollTrigger: {trigger: '.path', start: 'top 70%', end: 'bottom 75%', scrub: .8}});
+  gsap.utils.toArray('.route .wp').forEach(function(wp, i){
+    gsap.from(wp, {scale: 0, transformOrigin: 'center', duration: .4, ease: 'back.out(2)', scrollTrigger: {trigger: '.path', start: 'top ' + (70 - i*9) + '%'}});
+  });
+
+  // Chapter tabs slide in from the page edge
+  gsap.utils.toArray('.ch-tab').forEach(function(t){
+    gsap.from(t, {xPercent: -30, opacity: 0, duration: .9, ease: 'expo.out', scrollTrigger: {trigger: t, start: 'top 85%'}});
+  });
+
+  // Plates develop like prints: a clip reveal, once
+  gsap.utils.toArray('main .plate:not(.hero-plate) .img').forEach(function(p){
+    gsap.from(p, {clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.out', scrollTrigger: {trigger: p, start: 'top 85%'}});
+  });
+
+  window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>
