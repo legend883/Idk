@@ -11,3 +11,8 @@ whenever Claude Code works in this repo:
 
 Sources: https://github.com/anthropics/skills (frontend-design, theme-factory, webapp-testing),
 https://github.com/nextlevelbuilder/ui-ux-pro-max-skill, https://github.com/pbakaus/impeccable
+
+## Connectors (MCP)
+
+`.mcp.json` connects the **Magic UI** component library (https://magicui.design), so Claude can pull in
+ready-made animated pieces: text effects, animated backgrounds, logo marquees, and more.
