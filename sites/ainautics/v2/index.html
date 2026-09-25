@@ -955,6 +955,12 @@ textarea{min-height:120px;resize:vertical}
 
   // Answers use only what is on the site. Each topic: words that trigger it, the reply, and next steps.
   var T = {
+    length: {k:['how long','long does','long is','how many hours','hours long','how many days','duration','schedule','dates','when is','when are','time commitment','how fast','quickly'],
+      a:'<p>Course lengths:</p><ul><li><b>Self-Paced Part 107</b>: about 15&ndash;20 hours to be exam-ready, with 6 months of access</li><li><b>AG Remote Pilot</b>: 1 day in Columbia, SC</li><li><b>Law Enforcement &amp; SRO</b>: 2 days</li><li><b>Drone Delivery RPIC</b>: 5 days in Columbia, SC</li><li><b>Bootcamp</b>: in person and intensive. Ask the team for the next dates.</li></ul>',
+      o:[['Start Part 107','@FAA Part 107 certification'],['Ask about dates','@FAA Part 107 certification'],['Prices','prices']]},
+    overview: {k:['what do you do','what do yall do','what do y all do','what do you guys do','what does ainautics do','what is ainautics','whats ainautics','who are you','who are yall','who are y all','what do you offer','what do yall offer','what do y all offer','what you offer','what can you do','what can you help','what services','tell me about','tell me more','explain','overview','what is this','whats this','what do you all do','how can you help','help me','help','options','everything','ainautics','ainautics university','drone training','drones'],
+      a:'<p><b>AINautics</b> trains, certifies and connects drone pilots. It\u2019s based in Columbia, SC, and has been doing it since 2013. It does four main things:</p><ul><li><b>Pilot training</b>: FAA Part 107 license courses, starting at <span class="price">$49.99</span> online, plus specialty tracks like agriculture, delivery and law enforcement</li><li><b>Schools</b>: drone programs for every grade, from the new K\u20135 program to high school, teacher training and colleges</li><li><b>Drone services</b>: aerial photo, video, mapping and inspections across GA, SC and NC, and nationwide through <b>iFlyDrone</b></li><li><b>Brand Ambassador Program</b>: help drone pros open their own AINautics training school</li></ul><p>Which one can I tell you more about?</p>',
+      o:[['Get FAA certified','part107'],['Schools','schools'],['Drone services','services'],['Own a school','ambassador'],['Prices','prices']]},
     part107: {k:['part 107','107','faa','license','licence','certif','certified','pilot license','remote pilot','exam','test','online','self paced','self-paced','bootcamp'],
       a:'<p>The <b>FAA Part 107 Remote Pilot Certificate</b> is the license you need to fly drones commercially.</p><ul><li><b>Self-Paced Remote Pilot Certification</b>: 100% online, 6-month access, exam-ready in 15&ndash;20 hours. <span class="price">$49.99</span></li><li><b>Commercial Drone Certification Bootcamp</b>: in person and hands-on. Contact us for dates.</li></ul><p>You get practice exams, study guides and instructor support.</p>',
       o:[['Start Part 107','@FAA Part 107 certification'],['See all prices','prices'],['After I’m certified?','iflydrone']]},
@@ -991,7 +997,7 @@ textarea{min-height:120px;resize:vertical}
     police: {k:['police','law enforcement','sheriff','sro','fire','rescue','search','emergency','first responder','first responders','public safety','disaster','thermal imaging','agency'],
       a:'<p>AINautics supports fire, police, sheriff’s offices, search and rescue and emergency management with drone operations, equipment and training.</p><ul><li><b>Law Enforcement &amp; SRO course</b>: 2 days for department cohorts, covering Part 107, scene documentation, search operations, legal and privacy. Quote on request.</li><li>Disaster mapping, search and rescue, thermal imaging and equipment procurement</li></ul>',
       o:[['Request emergency support','@Emergency services'],['Train my department','@Emergency services']]},
-    services: {k:['service','services','hire','inspection','inspections','construction','real estate','property','mapping','survey','surveying','photo','video','wedding','thermal','roof','bridge','aerial','footage','business'],
+    services: {k:['fly over','flyover','my house','my home','my property','my land','my building','drone pilot','need a drone','someone to fly','pictures','photos','shots','drone shots','record','filming','film','listing','service','services','hire','inspection','inspections','construction','real estate','property','mapping','survey','surveying','photo','video','wedding','thermal','roof','bridge','aerial','footage','business'],
       a:'<p>AINautics is a full-service aerial photo, video and inspection provider across <b>Georgia, South Carolina and North Carolina</b>:</p><ul><li>Construction progress and lender draws</li><li>Commercial and residential property</li><li>Bridges and infrastructure</li><li>Mapping, 3D models and volumetrics</li><li>Photo and video for real estate, weddings and events</li><li>Thermal drone inspections</li></ul><p>Outside those states? iFlyDrone covers all 50.</p>',
       o:[['Book a drone service','@Drone services / request a pilot'],['iFlyDrone nationwide','iflydrone']]},
     iflydrone: {k:['iflydrone','ifly','marketplace','nationwide','50 states','job','jobs','work','get hired','missions','gig','earn','money','network','after'],
@@ -1000,10 +1006,10 @@ textarea{min-height:120px;resize:vertical}
     ambassador: {k:['ambassador','franchise','own school','start a school','open a school','my own','business opportunity','teach drones'],
       a:'<p>The <b>Brand Ambassador Program</b> lets qualified drone pros launch and run an AINautics-branded training school in their community, with curriculum, business support and mentorship: setup, marketing, running courses and ongoing reviews.</p><p>The request takes less than 2 minutes. No commitment.</p>',
       o:[['Request ambassador info','@Brand Ambassador Program']]},
-    scholarship: {k:['scholarship','scholarships','free training','hbcu','women','initiative','grant','funding'],
+    scholarship: {k:['scholarship','financial aid','financial','aid','pay for','sponsor','sponsored','low cost','scholarships','free training','hbcu','women','initiative','grant','funding'],
       a:'<p>The <b>South Carolina Drone Initiative</b> offers scholarship-based certification training, built to close talent gaps in the drone industry. It serves Farm 50, HBCU Soars, Women in Drones, small business owners, public service agencies and first responders.</p>',
       o:[['Ask about eligibility','@FAA Part 107 certification']]},
-    about: {k:['about','who','founder','chris','williams','taz','history','founded','owner','company','minority'],
+    about: {k:['about','about you','founder','who founded','who started','who owns','started','story','chris','williams','taz','history','founded','owner','company','minority'],
       a:'<p>AINautics was founded in <b>2013</b> in Columbia, SC by <b>Chris Williams</b>, and the lead instructor is <b>Taz Little</b>. The minority-owned company was named <b>Small Business of the Year 2024</b> by the Columbia Chamber of Commerce.</p><p>Its brands are AINautics, AINautics University, iFlyDrone, AItechnamics and the VR Trailer Mobile Lab.</p>',
       o:[['Read more','#about'],['Contact the team','contact']]},
     contact: {k:['contact','phone','call','email','address','where','location','located','hours','open','person','human','talk','someone','columbia','office','visit'],
@@ -1017,13 +1023,13 @@ textarea{min-height:120px;resize:vertical}
   var MENU = [['Get FAA certified','part107'],['Programs for schools','schools'],['New K–5 program','k5'],['Hire a drone pilot','services'],['Prices','prices'],['Talk to a person','contact']];
   T.menu = {k:[], a:'<p>Here’s what I can help with:</p>', o:MENU};
 
-  function norm(s){ return ' ' + s.toLowerCase().replace(/[–—]/g,'-').replace(/[^a-z0-9$\- ]+/g,' ').replace(/\s+/g,' ') + ' '; }
+  function norm(s){ return ' ' + s.toLowerCase().replace(/['\u2019]/g,'').replace(/\bu\b|\bya\b/g,'you').replace(/\bur\b/g,'your').replace(/\bwat\b|\bwut\b/g,'what').replace(/[–—]/g,'-').replace(/[^a-z0-9$\- ]+/g,' ').replace(/\s+/g,' ') + ' '; }
   function match(q){
     var t = norm(q), best = null, top = 0;
     Object.keys(T).forEach(function(id){
       var s = 0;
       T[id].k.forEach(function(w){ if(t.indexOf(' ' + w + ' ') > -1) s += 3; else if(w.length > 3 && t.indexOf(w) > -1) s += 2; });
-      if(id === 'hi' || id === 'thanks') s -= 1;
+      if(id === 'hi' || id === 'thanks') s -= 1; if(id === 'overview') s -= 2;
       if(s > top){ top = s; best = id; }
     });
     return best;
@@ -1068,7 +1074,7 @@ textarea{min-height:120px;resize:vertical}
     var id = match(q);
     if(id){ reply(id); return; }
     var t = add('bot typing', '<i></i><i></i><i></i>');
-    setTimeout(function(){ t.remove(); add('bot', '<p>I’m not sure about that one, but the team can help. Call <a class="num" href="tel:+18036031387">803-603-1387</a> or pick a topic:</p>'); acts([['Send an inquiry','@']].concat(MENU.slice(0,5))); }, reduce ? 0 : 650);
+    setTimeout(function(){ t.remove(); add('bot', '<p>Good question. Here\u2019s the quick version. The team at <a class="num" href="tel:+18036031387">803-603-1387</a> can go deeper on anything.</p>' + T.overview.a); acts(T.overview.o.concat([['Send an inquiry','@']])); }, reduce ? 0 : 650);
   }
 
   function open(){
