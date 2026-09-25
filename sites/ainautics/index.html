@@ -34,6 +34,8 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;caret-color:var(--red);scrollbar-color:var(--red) var(--paper-2)}
 ::selection{background:var(--red);color:#fff}
@@ -97,12 +99,34 @@ p{margin:0}
 
 /* Cover */
 .cover{background:var(--black);color:#fff;position:relative;overflow:hidden;padding-top:calc(84px + env(safe-area-inset-top,0px))}
-.cover::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+.cover::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:
   repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px 120px),
   repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 120px);
   mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
 .cover-in{position:relative;z-index:1;display:grid;gap:clamp(2rem,4vw,4rem);padding-block:clamp(2.5rem,6vw,5.5rem) clamp(3rem,6vw,5.5rem);align-items:center}
-@media (min-width:960px){.cover-in{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+@media (min-width:960px){.cover{min-height:min(94vh,940px);display:flex;align-items:center}.cover>.wrap{width:100%}.cover-in{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}}
+.cover .grain,.amb .grain,.contact .grain{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.07;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.amb,.contact{position:relative}
+.amb>.wrap,.contact>.wrap{position:relative;z-index:2}
+.hero-photo{position:relative;margin:0 calc(var(--gutter)*-1);aspect-ratio:4/5;overflow:hidden;background:#111}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.75),rgba(0,0,0,0) 35%);pointer-events:none}
+.hero-photo figcaption{position:absolute;left:var(--gutter);right:var(--gutter);bottom:1.1rem;z-index:2;display:flex;gap:.9rem;align-items:baseline;font-size:.86rem;line-height:1.45;color:#DADADA}
+.hero-photo .fig-no{color:#E08A84}
+.hero-photo .crosshair{position:absolute;left:61%;top:37%;width:74px;height:74px;margin:-37px 0 0 -37px;border:1.5px solid rgba(255,255,255,.75);border-radius:50%;z-index:2;pointer-events:none}
+.hero-photo .crosshair::before,.hero-photo .crosshair::after{content:"";position:absolute}
+.hero-photo .crosshair::before{left:50%;top:-16px;bottom:-16px;width:1.5px;margin-left:-.75px;background:linear-gradient(180deg,rgba(255,255,255,.8) 0 22%,transparent 22% 78%,rgba(255,255,255,.8) 78%)}
+.hero-photo .crosshair::after{top:50%;left:-16px;right:-16px;height:1.5px;margin-top:-.75px;background:linear-gradient(90deg,rgba(255,255,255,.8) 0 22%,transparent 22% 78%,rgba(255,255,255,.8) 78%)}
+.hero-photo .readout{position:absolute;right:var(--gutter);top:1.2rem;z-index:2;display:grid;gap:.25rem;text-align:right;font-family:var(--display);font-weight:600;font-size:.72rem;letter-spacing:.06em;color:rgba(255,255,255,.85);font-variant-numeric:tabular-nums}
+.hero-photo .readout b{color:#fff;font-weight:700}
+@media (min-width:960px){
+  .cover-in{position:static}
+  .cover-in>div{position:relative;z-index:2}
+  .hero-photo{position:absolute;top:0;right:0;bottom:0;width:42%;margin:0;aspect-ratio:auto;z-index:1}
+  .hero-photo::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.35) 18%,rgba(0,0,0,0) 40%);pointer-events:none}
+  .hero-photo figcaption{left:3rem;right:2rem;bottom:2rem;max-width:30em}
+  .hero-photo .readout{right:2rem;top:calc(100px + env(safe-area-inset-top,0px))}
+}
 .edition{display:flex;flex-direction:column;gap:.3rem 1.25rem;font-family:var(--display);font-weight:500;font-size:.92rem;letter-spacing:.02em;color:var(--on-dark-2);margin-bottom:clamp(1.25rem,2.5vw,2rem)}
 @media (min-width:600px){.edition{flex-direction:row;flex-wrap:wrap}.edition span+span::before{content:"";display:inline-block;width:18px;height:1px;background:currentColor;vertical-align:middle;margin-right:1.25rem;opacity:.6}}
 .cover h1{font-size:clamp(2.6rem,6.4vw,5.6rem);font-weight:800;letter-spacing:-.035em;line-height:.98}
@@ -119,7 +143,8 @@ p{margin:0}
 /* Figure plates */
 .plate{margin:0;background:#fff;padding:clamp(10px,1.1vw,14px);box-shadow:0 30px 60px -30px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.12);color:var(--ink)}
 .plate .img{position:relative;overflow:hidden;background:var(--paper-2)}
-.plate img{width:100%;height:100%;object-fit:cover}
+.plate img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease-out)}
+.plate:hover img{transform:scale(1.04)}
 .plate figcaption{display:flex;gap:.9rem;align-items:baseline;padding-top:.7rem;font-size:.86rem;line-height:1.45;color:var(--ink-2)}
 .fig-no{font-family:var(--display);font-weight:700;color:var(--red);white-space:nowrap}
 .cover .plate{transform:rotate(1.2deg)}
@@ -279,6 +304,16 @@ blockquote{margin:0}
 .side-quote p{font-family:var(--display);font-weight:500;font-size:1.12rem;line-height:1.45;letter-spacing:-.01em}
 .side-quote footer{margin-top:.7rem;font-size:.92rem;color:var(--ink-2)}
 .side-quote footer b{color:var(--ink);font-family:var(--display)}
+.band{position:relative;margin-top:clamp(3.5rem,7vw,6rem);height:clamp(440px,78vh,760px);overflow:hidden;color:#fff;background:#000}
+.band img{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;will-change:transform}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,.05) 70%),linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,0) 55%)}
+.band .wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(2rem,5vw,4rem)}
+.band .kick{font-family:var(--display);font-weight:600;font-size:.95rem;color:#E08A84}
+.band h3{font-size:clamp(2.2rem,5.4vw,4.6rem);font-weight:800;letter-spacing:-.035em;line-height:1;margin-top:.5rem;max-width:12em}
+.band p{margin-top:1rem;max-width:36em;color:#E6E6E6;font-size:1.08rem}
+.band .row{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;margin-top:1.6rem}
+.band .row .price{font-family:var(--display);font-weight:800;font-size:1.6rem}
+.band .row .price small{font-weight:500;font-size:.9rem;color:#CFCFCF;margin-left:.4rem}
 .wide{margin-top:clamp(3rem,6vw,5rem)}
 .wide .plate .img{aspect-ratio:16/7}
 .wide-row{display:grid;gap:1.5rem 3rem;margin-top:1.75rem;align-items:start}
@@ -430,6 +465,7 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
 <main id="main">
 <!-- Cover -->
 <section class="cover on-dark" id="top" aria-labelledby="h-cover">
+  <div class="grain" aria-hidden="true"></div>
   <div class="wrap cover-in">
     <div>
       <p class="edition"><span>Drone Air Innovations</span><span>Columbia, South Carolina</span><span class="num">Since 2013</span></p>
@@ -446,12 +482,9 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
         <a href="#ambassadors" class="t-amb">Start a drone school</a>
       </div>
     </div>
-    <figure class="plate hero-plate">
-      <div class="img">
-        <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/e1965a4b-aa34-493b-8ce3-9da4bccac800.webp" width="1280" height="1600" alt="A quadcopter drone hovering over a misty field at sunrise while an instructor holds the controller in the foreground" fetchpriority="high">
-        <span class="callout" style="left:56%;top:34%">Level hover</span>
-        <span class="callout" style="left:8%;bottom:9%">Pilot in command</span>
-      </div>
+    <figure class="hero-photo">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/e1965a4b-aa34-493b-8ce3-9da4bccac800.webp" width="1280" height="1600" alt="A quadcopter drone hovering over a misty field at sunrise while an instructor holds the controller in the foreground" fetchpriority="high">
+      <div class="readout" aria-hidden="true"><span>ALT <b>120 FT</b></span><span>PART <b>107</b></span><span>34.00&deg;N 81.03&deg;W</span></div>
       <figcaption><span class="fig-no">Fig. 1</span><span>Most drone courses stop at theory. AINautics students log real flight time on real aircraft.</span></figcaption>
     </figure>
   </div>
@@ -657,11 +690,18 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
       </aside>
     </div>
 
+  </div>
+  <div class="band on-dark">
+    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/eb88c62f-15c4-4e21-943b-3192d2b95b37.webp" width="2200" height="1244" loading="lazy" alt="A white fixed-wing delivery drone on a launch pad at a grass training field, with trainees at laptops behind it">
+    <div class="wrap">
+      <span class="kick">Drone Delivery RPIC Course &middot; Columbia, SC</span>
+      <h3>5 Days. Real Skills. Actual Flight Time.</h3>
+      <p>Go from ground school to flying a fixed-wing delivery drone yourself. Not a simulator. Not a toy. The real thing.</p>
+      <div class="row"><span class="price">$1,500<small>5 days, in person</small></span><a class="btn btn-red" href="#contact" data-interest="FAA Part 107 certification">Reserve a seat <svg aria-hidden="true"><use href="#arrow"/></svg></a></div>
+    </div>
+  </div>
+  <div class="wrap">
     <div class="wide">
-      <figure class="plate">
-        <div class="img"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/eb88c62f-15c4-4e21-943b-3192d2b95b37.webp" width="2200" height="1244" loading="lazy" alt="A white fixed-wing delivery drone on a launch pad at a grass training field, with trainees at laptops behind it"></div>
-        <figcaption><span class="fig-no">Fig. 2.2</span><span>Drone Delivery RPIC. 5 days. Real skills. Actual flight time.</span></figcaption>
-      </figure>
       <div class="wide-row">
         <h3>Career development, not just a certificate.</h3>
         <div>
@@ -725,7 +765,7 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
           <span class="kick">iFlyDrone by AINautics</span>
           <h3>Smart drones. Sharp results. Nationwide.</h3>
         </div>
-        <p>iFlyDrone connects businesses with FAA Part 107 certified, vetted drone pilots in all 50 states. Many of them trained with AINautics.</p>
+        <p>iFlyDrone connects businesses with FAA Part 107 certified, vetted drone pilots in all 50 states.</p>
       </div>
       <ol class="steps">
         <li><b>Request a service</b><span>Tell us about your project needs, location and timeline.</span></li>
@@ -748,6 +788,7 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
 
 <!-- Chapter 4: Ambassadors -->
 <section class="chapter amb on-dark" id="ambassadors" data-chapter="ambassadors" aria-labelledby="h-amb">
+  <div class="grain" aria-hidden="true"></div>
   <div class="wrap">
     <header class="ch-open">
       <div class="ch-tab t-amb" aria-hidden="true"><span class="big">4</span><span class="word">Ambassadors</span></div>
@@ -810,6 +851,7 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
 
 <!-- Contact -->
 <section class="contact on-dark" id="contact" aria-labelledby="h-contact">
+  <div class="grain" aria-hidden="true"></div>
   <div class="wrap contact-grid">
     <div>
       <h2 id="h-contact">Connect with our pilot support team.</h2>
@@ -871,6 +913,7 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -937,9 +980,20 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
   var tl = gsap.timeline({defaults:{ease:'expo.out'}});
   tl.from('.cover h1 .ln > span', {yPercent: 105, duration: 1.1, stagger: .09})
     .from('.edition, .lede, .cover-cta, .doors', {y: 14, opacity: 0, duration: .9, stagger: .07}, '-=.75')
-    .from('.hero-plate', {clipPath: 'inset(100% 0 0 0)', rotate: 0, duration: 1.2}, '-=1.1')
-    .from('.hero-plate img', {scale: 1.12, duration: 1.6}, '<')
-    .from('.callout', {opacity: 0, x: -8, duration: .6, stagger: .12}, '-=.6');
+    .from('.hero-photo', {clipPath: 'inset(0 0 0 100%)', duration: 1.4}, '-=1.15')
+    .from('.hero-photo img', {scale: 1.15, duration: 2}, '<')
+    .from('.hero-photo .readout, .hero-photo figcaption', {opacity: 0, duration: .8, stagger: .12}, '-=1');
+
+  // Delivery band: slow parallax
+  gsap.to('.band img', {yPercent: 12, ease: 'none', scrollTrigger: {trigger: '.band', start: 'top bottom', end: 'bottom top', scrub: true}});
+
+  // Smooth scrolling
+  if(window.Lenis){
+    var lenis = new Lenis({lerp: .1, anchors: {offset: -70}});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
 
   // Flight path draws itself as you read the four stages
   var flown = document.getElementById('flown');
@@ -956,7 +1010,7 @@ footer.site{background:var(--black);color:#BDBDBD;padding-block:3.5rem 2.5rem;fo
   });
 
   // Plates develop like prints: a clip reveal, once
-  gsap.utils.toArray('main .plate:not(.hero-plate) .img').forEach(function(p){
+  gsap.utils.toArray('main .plate .img').forEach(function(p){
     gsap.from(p, {clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.out', scrollTrigger: {trigger: p, start: 'top 85%'}});
   });
 
