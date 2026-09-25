@@ -380,6 +380,54 @@ textarea{min-height:120px;resize:vertical}
 .wordmark{font-family:var(--display);font-weight:800;font-size:clamp(4rem,17.5vw,17rem);letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.22);margin-top:clamp(3rem,6vw,5rem);white-space:nowrap;text-align:center;user-select:none}
 .foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem 2rem;padding-block:1.5rem 2rem;font-size:.88rem;border-top:1px solid rgba(255,255,255,.12);margin-top:1rem}
 .credit{color:#fff}
+/* Chat assistant */
+.ask{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:105;display:inline-flex;align-items:center;gap:.65rem;min-height:56px;padding:.45rem 1.2rem .45rem .45rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:#000;color:#fff;font-family:var(--display);font-weight:600;font-size:.95rem;cursor:pointer;box-shadow:0 18px 40px -14px rgba(0,0,0,.55);transition:transform .45s var(--ease),opacity .3s,background .3s}
+.ask:hover{background:var(--char-2)}
+.ask .ico{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--red);transition:transform .6s var(--ease)}
+.ask:hover .ico{transform:rotate(45deg)}
+.ask svg{width:24px;height:24px}
+.ask.is-hidden{opacity:0;transform:translateY(20px) scale(.9);pointer-events:none}
+@media (max-width:599px){.ask .lbl{display:none}.ask{padding:.4rem}}
+.chat{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:106;width:min(400px,calc(100vw - 32px));height:min(620px,calc(100dvh - 110px));display:flex;flex-direction:column;background:var(--paper);color:var(--ink);border-radius:18px;overflow:hidden;box-shadow:0 40px 80px -24px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.06);transform-origin:100% 100%;transition:opacity .35s var(--ease),transform .5s var(--ease)}
+.chat[hidden]{display:flex!important;opacity:0;transform:translateY(16px) scale(.94);pointer-events:none;visibility:hidden;transition:opacity .25s,transform .35s var(--ease),visibility 0s .35s}
+@media (max-width:599px){.chat{right:0;bottom:0;width:100%;height:100dvh;border-radius:0;padding-bottom:env(safe-area-inset-bottom,0px)}}
+.chat-head{display:flex;align-items:center;gap:.8rem;padding:1rem 1rem 1rem 1.15rem;background:#000;color:#fff;padding-top:max(1rem,env(safe-area-inset-top,0px))}
+.chat-head .ico{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--red)}
+.chat-head .ico svg{width:22px;height:22px}
+.chat-head b{display:block;font-family:var(--display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em;line-height:1.2}
+.chat-head small{display:block;color:var(--mute-d);font-size:.8rem;line-height:1.35}
+.chat-x{margin-left:auto;flex:none;display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:#fff;cursor:pointer;transition:background .25s}
+.chat-x:hover{background:rgba(255,255,255,.1)}
+.chat-x svg{width:18px;height:18px}
+.chat-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:1.25rem 1rem .5rem;display:flex;flex-direction:column;gap:.7rem;scrollbar-width:thin;scrollbar-color:var(--rule) transparent}
+.msg{max-width:88%;padding:.75rem .95rem;border-radius:14px;font-size:.94rem;line-height:1.55;animation:msgIn .45s var(--ease) both}
+.msg.bot{align-self:flex-start;background:var(--paper-2);border-bottom-left-radius:4px}
+.msg.me{align-self:flex-end;background:var(--red);color:#fff;border-bottom-right-radius:4px}
+.msg p{margin:0}.msg p+p,.msg p+ul,.msg ul+p{margin-top:.5rem}
+.msg ul{margin:0;padding-left:1.1rem}.msg li{margin:.15rem 0}
+.msg b{font-weight:600}
+.msg .price{font-family:var(--display);font-weight:700;color:var(--red);white-space:nowrap}
+.msg a{color:var(--red);font-weight:600;text-underline-offset:3px}
+.msg.typing{display:flex;gap:4px;padding:.95rem 1rem}
+.msg.typing i{width:7px;height:7px;border-radius:50%;background:#9a9a9a;animation:dot 1s infinite}
+.msg.typing i:nth-child(2){animation-delay:.15s}.msg.typing i:nth-child(3){animation-delay:.3s}
+.acts{display:flex;flex-wrap:wrap;gap:.45rem;align-self:flex-start;max-width:100%;animation:msgIn .45s var(--ease) .1s both}
+.acts button{min-height:40px;padding:.45rem .9rem;border:1.5px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);font:600 .86rem/1.2 var(--display);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.acts button:hover{background:var(--ink);color:#fff}
+.acts button.go{background:var(--red);border-color:var(--red);color:#fff}
+.acts button.go:hover{background:var(--red-hi);border-color:var(--red-hi)}
+.chat-form{display:flex;gap:.5rem;padding:.75rem;border-top:1px solid var(--rule);background:var(--paper)}
+.chat-form input{flex:1;min-width:0;min-height:46px;padding:.6rem 1rem;border:1.5px solid var(--rule);border-radius:999px;font:400 16px/1.3 var(--body);color:var(--ink);background:var(--paper);transition:border-color .25s}
+.chat-form input::placeholder{color:#767676}
+.chat-form input:focus{outline:none;border-color:var(--ink)}
+.chat-form button{flex:none;display:grid;place-items:center;width:46px;height:46px;border:0;border-radius:50%;background:var(--red);color:#fff;cursor:pointer;transition:background .25s}
+.chat-form button:hover{background:var(--red-hi)}
+.chat-form button svg{width:18px;height:18px}
+.chat-note{margin:0;padding:0 1rem .7rem;font-size:.74rem;color:var(--ink-2);text-align:center;background:var(--paper)}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes dot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.msg,.acts{animation:none}.chat,.ask{transition:none}.msg.typing i{animation:none}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -771,6 +819,25 @@ textarea{min-height:120px;resize:vertical}
   <div class="wrap foot-base"><span class="num">&copy; 2026 AINautics LLC. All rights reserved.</span><span class="credit">Concept site by Legend Creative.</span></div>
 </footer>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="quad" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="3"/><circle cx="18.5" cy="5.5" r="3"/><circle cx="5.5" cy="18.5" r="3"/><circle cx="18.5" cy="18.5" r="3"/><path d="M7.6 7.6l2.4 2.4M16.4 7.6L14 10M7.6 16.4l2.4-2.4M16.4 16.4L14 14"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2" fill="currentColor"/></g></symbol>
+</svg>
+<button class="ask" id="askBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="chat"><span class="ico"><svg aria-hidden="true"><use href="#quad"/></svg></span><span class="lbl">Ask AINautics</span></button>
+<section class="chat" id="chat" role="dialog" aria-modal="false" aria-labelledby="chatTitle" hidden>
+  <div class="chat-head">
+    <span class="ico"><svg aria-hidden="true"><use href="#quad"/></svg></span>
+    <div><b id="chatTitle">Ask AINautics</b><small>Courses, schools, services and pricing</small></div>
+    <button class="chat-x" id="chatX" type="button" aria-label="Close chat"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite" data-lenis-prevent></div>
+  <form class="chat-form" id="chatForm" autocomplete="off">
+    <label class="sr-only" for="chatIn">Type your question</label>
+    <input id="chatIn" type="text" placeholder="Ask about courses, schools, pricing…" maxlength="200">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#arrow"/></svg></button>
+  </form>
+  <p class="chat-note">Need a person? Call <a class="num" href="tel:+18036031387">803-603-1387</a></p>
+</section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -839,7 +906,7 @@ textarea{min-height:120px;resize:vertical}
 
   // Smooth scrolling
   if(window.Lenis){
-    var lenis = new Lenis({lerp: .1, anchors: {offset: -78}});
+    var lenis = new Lenis({lerp: .1, anchors: {offset: -78}}); window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -878,6 +945,145 @@ textarea{min-height:120px;resize:vertical}
   });
 
   window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+})();
+</script>
+<script>
+(function(){
+  var btn = document.getElementById('askBtn'), box = document.getElementById('chat'), x = document.getElementById('chatX');
+  var log = document.getElementById('chatLog'), form = document.getElementById('chatForm'), inp = document.getElementById('chatIn');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches, started = false;
+
+  // Answers use only what is on the site. Each topic: words that trigger it, the reply, and next steps.
+  var T = {
+    part107: {k:['part 107','107','faa','license','licence','certif','certified','pilot license','remote pilot','exam','test','online','self paced','self-paced','bootcamp'],
+      a:'<p>The <b>FAA Part 107 Remote Pilot Certificate</b> is the license you need to fly drones commercially.</p><ul><li><b>Self-Paced Remote Pilot Certification</b>: 100% online, 6-month access, exam-ready in 15&ndash;20 hours. <span class="price">$49.99</span></li><li><b>Commercial Drone Certification Bootcamp</b>: in person and hands-on. Contact us for dates.</li></ul><p>You get practice exams, study guides and instructor support.</p>',
+      o:[['Start Part 107','@FAA Part 107 certification'],['See all prices','prices'],['After I’m certified?','iflydrone']]},
+    prices: {k:['price','prices','cost','how much','pricing','fee','tuition','$','cheap','afford'],
+      a:'<p>Here are the course prices:</p><ul><li>Self-Paced Part 107: <span class="price">$49.99</span></li><li>Specialized Tracks: <span class="price">$129&ndash;$199</span></li><li>AG Remote Pilot Certification: <span class="price">Free</span></li><li>Drone Delivery RPIC, 5 days: <span class="price">$1,500</span></li><li>Drone Simulator: <span class="price">$125/yr</span></li><li>Bootcamp, Law Enforcement and team training: quote on request</li></ul>',
+      o:[['Start Part 107','@FAA Part 107 certification'],['Get a team quote','@Specialized or team training'],['View courses','#courses']]},
+    k5: {k:['k-5','k5','elementary','kindergarten','kids','young','little','grade school','1st grade','first grade','5th','primary'],
+      a:'<p><b>New:</b> AINautics is now enrolling elementary schools, <b>grades K&ndash;5</b>.</p><ul><li>Hands-on lessons with small, classroom-safe drones</li><li>Early STEM: the science of flight, weather and maps</li><li>Risk-free practice on the AINautics Drone Simulator</li><li>The first step toward FAA Part 107 certification in high school</li></ul>',
+      o:[['Bring it to my school','@K-5 elementary program'],['Other school programs','schools']]},
+    schools: {k:['school','schools','student','students','district','classroom','k-12','k12','middle','high school','homeschool','charter','education','curriculum','stem','cte'],
+      a:'<p>AINautics University has programs for every grade:</p><ul><li><b>K&ndash;5</b>: new elementary drone program</li><li><b>Grades 6&ndash;12</b>: UAS Student Scholars, a cohort program to a real FAA Part 107 credential</li><li><b>Train-the-Teacher</b>: your teachers get certified and your school owns the program</li><li><b>Colleges</b>: UAS100&ndash;UAS400 courses, for credit or non-credit</li></ul><p>Curriculum is aligned to CTE and state standards, including SC Drone Technologies 1 and 2.</p>',
+      o:[['K–5 program','k5'],['Train-the-Teacher','teacher'],['Colleges','college'],['VR Trailer','vr']]},
+    scholars: {k:['scholar','scholars','6-12','cohort','teen','teens','career ready','internship','apprentice'],
+      a:'<p><b>UAS Student Scholars</b> (grades 6&ndash;12) takes students from zero to a real FAA commercial pilot credential, with a path to internships, apprenticeships and the iFlyDrone marketplace. For middle and high schools and career centers, with cohort pricing.</p>',
+      o:[['Request info','@UAS Student Scholars (middle and high school)'],['Train-the-Teacher','teacher']]},
+    teacher: {k:['teacher','teachers','educator','train the teacher','train-the-teacher','ceu','own the program','instructor for my school'],
+      a:'<p><b>Train-the-Teacher</b> gives your school a drone program it owns:</p><ul><li>Request a quote with your school, teacher count and goals</li><li>Your educators complete training and Part 107 prep</li><li>Launch the curriculum and add the simulator</li><li>Coaching and CEUs keep it growing</li></ul><p>Includes a teacher dashboard and school codes so students link to your program.</p>',
+      o:[['Request a quote','@Train-the-Teacher'],['Simulator','sim']]},
+    college: {k:['college','colleges','university','universities','technical college','uas100','uas400','credit','capstone','denmark','pass rate'],
+      a:'<p>For universities and technical colleges: for-credit or non-credit courses in the <b>UAS100&ndash;UAS400</b> sequence, from Part 107 prep to a capstone in flight operations, data collection and mission planning.</p><p>Denmark Technical College students hit a <b>92% pass rate</b> in the first term.</p>',
+      o:[['Talk to the team','@College or university program']]},
+    vr: {k:['vr','virtual reality','trailer','mobile lab','career fair','event','events','team building'],
+      a:'<p>The <b>VR Trailer Mobile Lab</b> comes to you: virtual reality and commercial drone flight simulation, with one-on-one guidance from industry leaders. Great for schools, career fairs, community events and team building.</p>',
+      o:[['Book the VR Trailer','@VR Trailer Mobile Lab']]},
+    sim: {k:['simulator','sim','practice flying','virtual'],
+      a:'<p>The <b>AINautics Drone Simulator</b> is <span class="price">$125/yr</span>: real-world missions with zero real-world risk. It is part of the K&ndash;5 and school programs too.</p>',
+      o:[['School programs','schools'],['Ask a question','@FAA Part 107 certification']]},
+    delivery: {k:['delivery','rpic','fixed wing','fixed-wing','package'],
+      a:'<p><b>Drone Delivery RPIC</b>: 5 days in person in Columbia, SC, from ground school to flying a fixed-wing delivery drone yourself. <span class="price">$1,500</span></p>',
+      o:[['Reserve a seat','@FAA Part 107 certification'],['All prices','prices']]},
+    ag: {k:['ag','agriculture','farm','farming','crop','ndvi','spray','farmer','farm 50'],
+      a:'<p><b>AG Remote Pilot Certification</b>: 1 day in Columbia, SC, covering crop scouting, NDVI imaging and spray calibration on real farmland. It’s <span class="price">Free</span>. Part 107 is required first.</p>',
+      o:[['Sign up','@Specialized or team training'],['Get Part 107 first','part107']]},
+    police: {k:['police','law enforcement','sheriff','sro','fire','rescue','search','emergency','first responder','first responders','public safety','disaster','thermal imaging','agency'],
+      a:'<p>AINautics supports fire, police, sheriff’s offices, search and rescue and emergency management with drone operations, equipment and training.</p><ul><li><b>Law Enforcement &amp; SRO course</b>: 2 days for department cohorts, covering Part 107, scene documentation, search operations, legal and privacy. Quote on request.</li><li>Disaster mapping, search and rescue, thermal imaging and equipment procurement</li></ul>',
+      o:[['Request emergency support','@Emergency services'],['Train my department','@Emergency services']]},
+    services: {k:['service','services','hire','inspection','inspections','construction','real estate','property','mapping','survey','surveying','photo','video','wedding','thermal','roof','bridge','aerial','footage','business'],
+      a:'<p>AINautics is a full-service aerial photo, video and inspection provider across <b>Georgia, South Carolina and North Carolina</b>:</p><ul><li>Construction progress and lender draws</li><li>Commercial and residential property</li><li>Bridges and infrastructure</li><li>Mapping, 3D models and volumetrics</li><li>Photo and video for real estate, weddings and events</li><li>Thermal drone inspections</li></ul><p>Outside those states? iFlyDrone covers all 50.</p>',
+      o:[['Book a drone service','@Drone services / request a pilot'],['iFlyDrone nationwide','iflydrone']]},
+    iflydrone: {k:['iflydrone','ifly','marketplace','nationwide','50 states','job','jobs','work','get hired','missions','gig','earn','money','network','after'],
+      a:'<p><b>iFlyDrone</b> connects businesses with FAA Part 107 certified, vetted drone pilots in all 50 states.</p><ul><li><b>Businesses</b>: request a service, get matched, approve and schedule. Payment is held in escrow until you approve the deliverables.</li><li><b>Pilots</b>: AINautics graduates can join the network and get matched with paying missions.</li></ul>',
+      o:[['Request a pilot','@Drone services / request a pilot'],['Join the Pilot Network','@Join the iFlyDrone pilot network']]},
+    ambassador: {k:['ambassador','franchise','own school','start a school','open a school','my own','business opportunity','teach drones'],
+      a:'<p>The <b>Brand Ambassador Program</b> lets qualified drone pros launch and run an AINautics-branded training school in their community, with curriculum, business support and mentorship: setup, marketing, running courses and ongoing reviews.</p><p>The request takes less than 2 minutes. No commitment.</p>',
+      o:[['Request ambassador info','@Brand Ambassador Program']]},
+    scholarship: {k:['scholarship','scholarships','free training','hbcu','women','initiative','grant','funding'],
+      a:'<p>The <b>South Carolina Drone Initiative</b> offers scholarship-based certification training, built to close talent gaps in the drone industry. It serves Farm 50, HBCU Soars, Women in Drones, small business owners, public service agencies and first responders.</p>',
+      o:[['Ask about eligibility','@FAA Part 107 certification']]},
+    about: {k:['about','who','founder','chris','williams','taz','history','founded','owner','company','minority'],
+      a:'<p>AINautics was founded in <b>2013</b> in Columbia, SC by <b>Chris Williams</b>, and the lead instructor is <b>Taz Little</b>. The minority-owned company was named <b>Small Business of the Year 2024</b> by the Columbia Chamber of Commerce.</p><p>Its brands are AINautics, AINautics University, iFlyDrone, AItechnamics and the VR Trailer Mobile Lab.</p>',
+      o:[['Read more','#about'],['Contact the team','contact']]},
+    contact: {k:['contact','phone','call','email','address','where','location','located','hours','open','person','human','talk','someone','columbia','office','visit'],
+      a:'<p>You can reach the AINautics team here:</p><ul><li>Phone: <a class="num" href="tel:+18036031387">803-603-1387</a></li><li>Email: <a href="mailto:info@ainautics.com">info@ainautics.com</a></li><li>1225 Laurel St., Suite 315B, Columbia, SC 29201</li><li>Monday to Saturday, 9:00 am to 5:30 pm</li></ul>',
+      o:[['Send an inquiry','@'],['Back to topics','menu']]},
+    thanks: {k:['thanks','thank you','thx','ty','appreciate','great','awesome','cool'],
+      a:'<p>Anytime. Is there anything else I can help with?</p>', o:[['Back to topics','menu']]},
+    hi: {k:['hi','hello','hey','yo','good morning','good afternoon','sup'],
+      a:'<p>Hi! What are you looking for?</p>', o:null}
+  };
+  var MENU = [['Get FAA certified','part107'],['Programs for schools','schools'],['New K–5 program','k5'],['Hire a drone pilot','services'],['Prices','prices'],['Talk to a person','contact']];
+  T.menu = {k:[], a:'<p>Here’s what I can help with:</p>', o:MENU};
+
+  function norm(s){ return ' ' + s.toLowerCase().replace(/[–—]/g,'-').replace(/[^a-z0-9$\- ]+/g,' ').replace(/\s+/g,' ') + ' '; }
+  function match(q){
+    var t = norm(q), best = null, top = 0;
+    Object.keys(T).forEach(function(id){
+      var s = 0;
+      T[id].k.forEach(function(w){ if(t.indexOf(' ' + w + ' ') > -1) s += 3; else if(w.length > 3 && t.indexOf(w) > -1) s += 2; });
+      if(id === 'hi' || id === 'thanks') s -= 1;
+      if(s > top){ top = s; best = id; }
+    });
+    return best;
+  }
+
+  function add(cls, html){ var d = document.createElement('div'); d.className = 'msg ' + cls; d.innerHTML = html; log.appendChild(d); scroll(); return d; }
+  function scroll(){ log.scrollTo({top: log.scrollHeight, behavior: reduce ? 'auto' : 'smooth'}); }
+  function acts(list){
+    if(!list) return;
+    var w = document.createElement('div'); w.className = 'acts';
+    list.forEach(function(o){
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = o[0];
+      if(o[1].charAt(0) === '@') b.className = 'go';
+      b.addEventListener('click', function(){ act(o); });
+      w.appendChild(b);
+    });
+    log.appendChild(w); scroll();
+  }
+  function reply(id, delay){
+    var t = add('bot typing', '<i></i><i></i><i></i>');
+    setTimeout(function(){ t.remove(); add('bot', T[id].a); acts(T[id].o); }, reduce ? 0 : (delay || 650));
+  }
+  function goTo(hash){
+    var el = document.querySelector(hash); if(!el) return;
+    if(window.innerWidth < 600) close(false);
+    if(window.__lenis) window.__lenis.scrollTo(el, {offset: -78}); else el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  }
+  function act(o){
+    var v = o[1];
+    if(v.charAt(0) === '@'){
+      var topic = v.slice(1), sel = document.getElementById('f-int');
+      if(topic && sel){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].text === topic) sel.selectedIndex = i; } }
+      add('me', o[0]);
+      var t = add('bot typing', '<i></i><i></i><i></i>');
+      setTimeout(function(){ t.remove(); add('bot', '<p>Taking you to the inquiry form' + (topic ? ' with <b>' + topic + '</b> already selected' : '') + '. The team replies Monday to Saturday.</p>'); setTimeout(function(){ goTo('#contact'); }, reduce ? 0 : 500); }, reduce ? 0 : 450);
+      return;
+    }
+    if(v.charAt(0) === '#'){ add('me', o[0]); goTo(v); return; }
+    add('me', o[0]); reply(v);
+  }
+  function answer(q){
+    var id = match(q);
+    if(id){ reply(id); return; }
+    var t = add('bot typing', '<i></i><i></i><i></i>');
+    setTimeout(function(){ t.remove(); add('bot', '<p>I’m not sure about that one, but the team can help. Call <a class="num" href="tel:+18036031387">803-603-1387</a> or pick a topic:</p>'); acts([['Send an inquiry','@']].concat(MENU.slice(0,5))); }, reduce ? 0 : 650);
+  }
+
+  function open(){
+    box.hidden = false; btn.setAttribute('aria-expanded','true'); btn.classList.add('is-hidden');
+    if(!started){ started = true; add('bot','<p>Hi, I’m the AINautics assistant. I can help you get FAA certified, bring drones to your school or book a drone pilot.</p>'); setTimeout(function(){ add('bot','<p>What brings you here today?</p>'); acts(MENU); }, reduce ? 0 : 500); }
+    setTimeout(function(){ inp.focus({preventScroll:true}); }, 60);
+  }
+  function close(refocus){ box.hidden = true; btn.setAttribute('aria-expanded','false'); btn.classList.remove('is-hidden'); if(refocus !== false) btn.focus(); }
+  btn.addEventListener('click', open);
+  x.addEventListener('click', function(){ close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !box.hidden) close(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault(); var q = inp.value.trim(); if(!q) return;
+    var d = add('me', ''); d.textContent = q; inp.value = ''; answer(q);
+  });
 })();
 </script>
 </body>
