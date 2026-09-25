@@ -245,11 +245,6 @@ p{margin:0}
 @media (min-width:900px){.course .cost{text-align:right}.course:hover h3{transform:translateX(14px);color:var(--red)}}
 .course::before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
 .course:hover::before{transform:scaleX(1)}
-.peek{position:fixed;left:0;top:0;width:340px;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;pointer-events:none;z-index:90;opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity .3s var(--ease),transform .4s var(--ease);box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
-.peek.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.peek img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
-.peek img.on{opacity:1}
-@media (hover:none),(max-width:899px){.peek{display:none}}
 .course-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
 
 /* Band */
@@ -594,13 +589,13 @@ textarea{min-height:120px;resize:vertical}
       <p>Start with the FAA Part 107 Remote Pilot Certificate, the license required to fly drones commercially. Then add the specialty that gets you hired.</p>
     </div>
     <ul class="courses" id="courseList">
-      <li><a class="course" href="#contact" data-interest="FAA Part 107 certification" data-peek="0"><h3>Self-Paced Remote Pilot Certification<small>Everything the FAA tests on Part 107. Exam-ready in 15&ndash;20 hours.</small></h3><span class="fmt">100% online, 6-month access</span><span class="cost">$49.99</span></a></li>
-      <li><a class="course" href="#contact" data-interest="FAA Part 107 certification" data-peek="1"><h3>Commercial Drone Certification Bootcamp<small>Flight maneuvers, airspace regulations and aerial footage, hands-on.</small></h3><span class="fmt">In person, intensive</span><span class="cost">Contact us</span></a></li>
-      <li><a class="course" href="#contact" data-interest="Specialized or team training" data-peek="2"><h3>Specialized Tracks<small>Agriculture, Real Estate, Photography, First Responders, Drone Delivery.</small></h3><span class="fmt">Industry specialties</span><span class="cost">$129&ndash;$199</span></a></li>
-      <li><a class="course" href="#contact" data-interest="Specialized or team training" data-peek="3"><h3>AG Remote Pilot Certification<small>Crop scouting, NDVI imaging and spray calibration, on real farmland.</small></h3><span class="fmt">1 day, Columbia, SC. Part 107 required</span><span class="cost">Free</span></a></li>
-      <li><a class="course" href="#contact" data-interest="FAA Part 107 certification" data-peek="4"><h3>Drone Delivery RPIC<small>Ground school to flying a fixed-wing delivery drone yourself.</small></h3><span class="fmt">5 days, Columbia, SC</span><span class="cost">$1,500</span></a></li>
-      <li><a class="course" href="#contact" data-interest="Emergency services" data-peek="5"><h3>Law Enforcement &amp; SRO<small>Part 107 plus scene documentation, search operations, legal and privacy.</small></h3><span class="fmt">2 days, department cohorts</span><span class="cost">Quote</span></a></li>
-      <li><a class="course" href="#contact" data-interest="Specialized or team training" data-peek="2"><h3>Specialized Drone Training<small>Tailored programs for real estate, construction, agriculture and public safety teams.</small></h3><span class="fmt">On-site, online or hybrid</span><span class="cost">Quote</span></a></li>
+      <li><a class="course" href="#contact" data-interest="FAA Part 107 certification"><h3>Self-Paced Remote Pilot Certification<small>Everything the FAA tests on Part 107. Exam-ready in 15&ndash;20 hours.</small></h3><span class="fmt">100% online, 6-month access</span><span class="cost">$49.99</span></a></li>
+      <li><a class="course" href="#contact" data-interest="FAA Part 107 certification"><h3>Commercial Drone Certification Bootcamp<small>Flight maneuvers, airspace regulations and aerial footage, hands-on.</small></h3><span class="fmt">In person, intensive</span><span class="cost">Contact us</span></a></li>
+      <li><a class="course" href="#contact" data-interest="Specialized or team training"><h3>Specialized Tracks<small>Agriculture, Real Estate, Photography, First Responders, Drone Delivery.</small></h3><span class="fmt">Industry specialties</span><span class="cost">$129&ndash;$199</span></a></li>
+      <li><a class="course" href="#contact" data-interest="Specialized or team training"><h3>AG Remote Pilot Certification<small>Crop scouting, NDVI imaging and spray calibration, on real farmland.</small></h3><span class="fmt">1 day, Columbia, SC. Part 107 required</span><span class="cost">Free</span></a></li>
+      <li><a class="course" href="#contact" data-interest="FAA Part 107 certification"><h3>Drone Delivery RPIC<small>Ground school to flying a fixed-wing delivery drone yourself.</small></h3><span class="fmt">5 days, Columbia, SC</span><span class="cost">$1,500</span></a></li>
+      <li><a class="course" href="#contact" data-interest="Emergency services"><h3>Law Enforcement &amp; SRO<small>Part 107 plus scene documentation, search operations, legal and privacy.</small></h3><span class="fmt">2 days, department cohorts</span><span class="cost">Quote</span></a></li>
+      <li><a class="course" href="#contact" data-interest="Specialized or team training"><h3>Specialized Drone Training<small>Tailored programs for real estate, construction, agriculture and public safety teams.</small></h3><span class="fmt">On-site, online or hybrid</span><span class="cost">Quote</span></a></li>
     </ul>
     <div class="course-cta">
       <a class="btn btn-red" href="#contact" data-interest="FAA Part 107 certification">Start Part 107 for $49.99 <svg aria-hidden="true"><use href="#arrow"/></svg></a>
@@ -608,14 +603,6 @@ textarea{min-height:120px;resize:vertical}
     </div>
   </div>
 </section>
-<div class="peek" id="peek" aria-hidden="true">
-  <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/e4348284-779b-4d18-905d-0d19b980b7ef.webp" alt="" loading="lazy">
-  <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/ad2fbe2c-72ef-418f-be9b-01e617b1817d.webp" alt="" loading="lazy">
-  <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/dcfd2ef3-080f-4f54-85dd-db46b509692c.webp" alt="" loading="lazy">
-  <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/e1965a4b-aa34-493b-8ce3-9da4bccac800.webp" alt="" loading="lazy">
-  <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/eb88c62f-15c4-4e21-943b-3192d2b95b37.webp" alt="" loading="lazy">
-  <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_2y9epIre1Mp5IxObA3BfNJCh26e/09098c66-1663-466b-a4c1-cecbee14ba45.webp" alt="" loading="lazy">
-</div>
 
 <!-- BAND -->
 <section class="band dark" aria-labelledby="h-band">
@@ -831,19 +818,6 @@ textarea{min-height:120px;resize:vertical}
   function showQ(n){ qs[qi].classList.remove('on'); qi = (n + qs.length) % qs.length; qs[qi].classList.add('on'); qc.textContent = ('0'+(qi+1)).slice(-2) + ' / ' + ('0'+qs.length).slice(-2); }
   document.getElementById('qPrev').addEventListener('click', function(){ showQ(qi-1); });
   document.getElementById('qNext').addEventListener('click', function(){ showQ(qi+1); });
-
-  // Course hover preview
-  var peek = document.getElementById('peek'), pimgs = peek.querySelectorAll('img');
-  var fine = window.matchMedia('(hover: hover) and (min-width: 900px)').matches;
-  if(fine){
-    var px = 0, py = 0, cx = 0, cy = 0, running = false;
-    function loop(){ cx += (px - cx) * .18; cy += (py - cy) * .18; peek.style.left = cx + 'px'; peek.style.top = cy + 'px'; if(running) requestAnimationFrame(loop); }
-    document.querySelectorAll('.course').forEach(function(c){
-      c.addEventListener('mouseenter', function(e){ pimgs.forEach(function(i,k){ i.classList.toggle('on', k === +c.dataset.peek); }); cx = px = e.clientX; cy = py = e.clientY; peek.classList.add('on'); if(!running){ running = true; loop(); } });
-      c.addEventListener('mousemove', function(e){ px = e.clientX + 60; py = e.clientY - 20; });
-      c.addEventListener('mouseleave', function(){ peek.classList.remove('on'); running = false; });
-    });
-  }
 
   if(!window.gsap) return;
   gsap.registerPlugin(ScrollTrigger);
