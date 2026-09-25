@@ -5,21 +5,24 @@ cool white pages. The site is divided into numbered chapters, one per audience, 
 colored index tab stays pinned to the right edge on desktop. Photos are shown as white-matted
 "Fig." plates with captions.
 
-## Colors
+## Colors (AINautics brand, taken from ainautics.com)
 | Token | Hex | Use |
 |---|---|---|
-| blue | #1633B5 | Cover, contact section, Pilots tab, main links |
-| blue-ink | #0A1230 | Text, dark sections (flight path, Ambassadors, footer) |
-| paper | #F2F4F7 | Page background |
-| paper-2 | #E6EAF1 | Alternate section (Pilots) |
-| rule | #C9D0DE | Hairline rules |
-| yellow | #FFC629 | Main action buttons, Business tab, iFlyDrone panel |
-| magenta | #B0126E | Schools tab, the "New program" flag (K-5) |
+| black | #000000 | Header, cover, Ambassadors, contact, footer |
+| char | #161616 | Flight-path section |
+| red | #922D28 | AINautics brand red: buttons, accent rules, numbers, Schools tab, iFlyDrone panel |
+| red-hover | #A8362F | Hover state, and red text on black |
+| red-deep | #5E1C19 | Business tab |
+| paper / paper-2 | #FFFFFF / #F4F4F4 | Pages |
+| rule | #DADADA | Hairlines |
 
-## Type
-- Display: Archivo, 125% width, weight 800 (headings, numbers, labels, buttons)
-- Body: Public Sans 400/700
-- Sentence case everywhere. No all-caps labels.
+## Type (AINautics brand fonts)
+- Headings: Poppins 600–800
+- Body: Inter 400–700
+- Sentence case. The red 5px rule under key headings echoes their site.
+
+## Logo
+The real white AINautics "Drone Air Innovations" logo, re-hosted on Higgsfield's CDN.
 
 ## Components
 - Plate: white mat (10–14px), square corners, neutral soft shadow, "Fig. X.Y" caption
