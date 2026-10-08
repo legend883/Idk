@@ -16,5 +16,6 @@ Each folder's README lists the photo file names and the facts to confirm with th
 | rc-pro-solutions | RC Pro Solutions | Hardscape + landscaping | Black, white |
 | the-dreamscapes | The Dreamscapes | Design, build, maintain landscapes | Teal, blue, yellow |
 | itm-landscape | ITM Landscape | Lawn care + landscape (Gwinnett) | Lime green, white |
+| decks-unlimited | Decks & Porches Unlimited | Decks, porches, sunrooms (Buford) | Black, cedar brown, mascot blue |
 
 `_engine/` is the shared builder for everything except Arnold. Edit a client's `site.py`, then run `python3 site.py` in its folder.
