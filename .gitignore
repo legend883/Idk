@@ -2,3 +2,4 @@ sites/*/.impeccable/review/
 __pycache__/
 *.pyc
 sites/*/.review/
+demo-zips/
