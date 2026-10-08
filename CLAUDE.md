@@ -10,7 +10,9 @@ the design tools installed here. Do not produce a generic, template-looking site
 2. **ui-ux-pro-max**: run its `--design-system` search for the client's industry and style to pick
    the layout pattern, colors, fonts, and GSAP scroll-animation presets. Persist it with `--persist`.
 3. **frontend-design**: follow its principles for a distinctive, non-templated look.
-4. **theme-factory**: use it when the client has no brand colors or fonts yet.
+4. **Keep the client's brand colors.** These are redesigns of real businesses: match the colors they already
+   use (logo and current site) and make the design better. Don't rebrand them. Use **theme-factory**
+   only when the client has no brand colors at all.
 5. **Magic UI MCP** (`magicuidesign-mcp`): search it and use its real components for animated
    effects (text reveals, animated backgrounds, marquees, number tickers, shiny buttons, etc.)
    instead of hand-writing them.
@@ -21,6 +23,16 @@ the design tools installed here. Do not produce a generic, template-looking site
 ## Per-client organization
 
 Put each client's site in its own folder: `sites/<client-name>/`.
+
+## Photos
+
+Use placeholders (or verified stock photos) for client photos. The user tells prospects they are
+placeholders. Never invent reviews or awards.
+
+## Photos
+
+Use placeholders for client photos (the user tells prospects they're placeholders). Never invent
+reviews or awards.
 
 ## Working with the user
 

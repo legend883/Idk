@@ -45,12 +45,12 @@ def header(current):
     return f"""<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="mark" href="index.html" aria-label="Arnold Masonry and Landscape, home"><b>ARNOLD</b><span>Masonry &amp; Landscape</span></a>
+    <a class="mark" href="index.html" aria-label="Arnold Masonry and Landscape, home"><b>ARNOLD</b><span>Masonry &amp; Landscape</span><svg class="swoosh" viewBox="0 0 200 8" preserveAspectRatio="none" aria-hidden="true"><path d="M2 6 C 60 0, 140 0, 198 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav">{icon("menu")}<span>Menu</span></button>
     <nav class="nav" id="nav" aria-label="Main">
       {links}
       <a class="tel" href="tel:{TEL}">{icon("phone")}<span class="num">{PHONE}</span></a>
-      <a class="btn" href="contact.html">Free consultation</a>
+      <a class="btn" href="contact.html">Request a quote</a>
     </nav>
   </div>
 </header>"""
@@ -91,7 +91,7 @@ def footer():
 </footer>
 <nav class="callbar" aria-label="Quick contact">
   <a href="tel:{TEL}">{icon("phone")}Call</a>
-  <a href="contact.html">Free consultation {icon("arrow")}</a>
+  <a href="contact.html">Request a quote {icon("arrow")}</a>
 </nav>"""
 
 
@@ -100,10 +100,10 @@ def band(title="Let&rsquo;s walk your backyard.", text="Tell us what you&rsquo;r
   <div class="wrap row">
     <div>
       <h2 data-chisel>{title}</h2>
-      <p class="lede" style="margin-top:1.2rem;color:#f0dbd0">{text}</p>
+      <p class="lede" style="margin-top:1.2rem">{text}</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:1rem 1.6rem;align-items:center">
-      <a class="btn btn--light" href="contact.html">Book a design consultation {icon("arrow")}</a>
+      <a class="btn btn--light" href="contact.html">Request a quote {icon("arrow")}</a>
       <a class="tel" href="tel:{TEL}">{icon("phone")}<span class="num">{PHONE}</span></a>
     </div>
   </div>
@@ -118,7 +118,7 @@ def page(name, title, desc, body):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta name="theme-color" content="#d6d2ca">
+<meta name="theme-color" content="#1e2327">
 <link rel="preload" href="assets/fonts/Cinzel-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.classList.add('js')</script>
@@ -161,11 +161,13 @@ home = f"""
   <div class="wrap hero-grid">
     <div class="slab">
       <h1 data-chisel="hero" aria-label="Arnold">ARNOLD</h1>
-      <p class="inscr" aria-label="Master masons, Atlanta, established 1985"><span>Master Masons</span><span>Atlanta</span><span>Anno MCMLXXXV</span></p>
+      <p class="inscr" aria-label="Masonry and Landscape, serving Atlanta since 1985"><span>Masonry &amp; Landscape</span><span>Since 1985</span></p>
       <div class="rule" aria-hidden="true"></div>
-      <p class="promise hero-in">Outdoor kitchens, fireplaces and stone patios, built by hand to outlast the house.</p>
+      <p class="promise hero-in">Changing the landscape and hardscape of Atlanta.</p>
+      <p class="hero-in" style="color:var(--iron-2);max-width:44ch;margin-bottom:1.6rem">Luxury outdoor living: stone kitchens, fireplaces and patios, built by master masons since 1985.</p>
       <div class="actions hero-in">
-        <a class="btn" href="contact.html">Book a design consultation {icon("arrow")}</a>
+        <a class="btn" href="contact.html">Request a quote {icon("arrow")}</a>
+        <a class="btn btn--blue" href="work.html">View gallery</a>
         <a class="tel" href="tel:{TEL}">{icon("phone")}<span class="num">{PHONE}</span></a>
       </div>
       <div class="hero-proof hero-in">
@@ -398,7 +400,7 @@ about = f"""
     <div class="reveal">
       <h2 class="cut-h" data-chisel style="margin-bottom:1.4rem">Meet Scott</h2>
       <p class="lede">Founder and master mason. Scott still walks projects with homeowners and cares about the details that only another mason would notice.</p>
-      <a class="btn" href="contact.html" style="margin-top:1rem">Book a consultation {icon("arrow")}</a>
+      <a class="btn" href="contact.html" style="margin-top:1rem">Request a quote {icon("arrow")}</a>
     </div>
   </div>
 </section>
