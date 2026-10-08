@@ -1,0 +1,98 @@
+:root {
+  --bg: #ffffff;
+  --bg-2: #f4f2ee;
+  --ink: #111315;
+  --ink-2: #3d4145;
+  --muted: #62676c;
+  --line: rgba(0,0,0,.1);
+  --line-strong: rgba(0,0,0,.22);
+  --card: #ffffff;
+  --accent: #111315;
+  --accent-hi: #2a2f33;
+  --accent-ink: #ffffff;
+  --accent-text: #111315;
+  --accent-on-dark: #ffffff;
+  --accent-2: #ffffff;
+  --accent-2-hi: #e9e5de;
+  --accent-2-ink: #111315;
+  --focus: #111315;
+  --focus-ring: rgba(17,19,21,.2);
+  --error: #b3261e;
+  --star: #c9a24a;
+  --dark: #1d2124;
+  --dark-ink: #ffffff;
+  --dark-ink-2: #c9cbcd;
+  --topbar-bg: #111315;
+  --topbar-ink: #ffffff;
+  --header-bg: #111315;
+  --header-ink: #ffffff;
+  --nav-current: inherit;
+  --scrim: rgba(10,11,12,.9);
+  --panel-bg: rgba(255,255,255,.9);
+  --panel-ink: #16181a;
+  --panel-ink-2: #3b3f44;
+  --trust-bg: #1d2124;
+  --trust-ink: #ffffff;
+  --trust-line: rgba(255,255,255,.12);
+  --trust-icon: #e9e5de;
+  --band-bg: #111315;
+  --band-ink: #ffffff;
+  --band-ink-2: #c9cbcd;
+  --on-light-accent: #111315;
+  --footer-bg: #0a0b0c;
+  --footer-ink: #e9e9e7;
+  --footer-head: #e9e5de;
+  --footer-line: rgba(255,255,255,.14);
+  --pagehead-bg: #1d2124;
+  --pagehead-ink: #ffffff;
+  --pagehead-ink-2: #c9cbcd;
+  --input-bg: #fff;
+  --input-line: rgba(0,0,0,.25);
+  --callbar-call: #2a2f33;
+  --callbar-call-ink: #ffffff;
+  --f-display: 'Playfair Display', serif;
+  --f-body: 'Montserrat', sans-serif;
+  --f-script: cursive;
+  --display-weight: 500;
+  --display-tracking: -0.01em;
+  --display-case: none;
+  --display-leading: 1.06;
+  --radius-btn: 0px;
+  --radius-img: 0px;
+  --radius-lg: 0px;
+  --radius-input: 0px;
+  --joint: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%2214%22%3E%3Crect width=%22200%22 height=%2214%22 fill=%22%23ffffff%22/%3E%3Crect y=%226%22 width=%22200%22 height=%221.5%22 fill=%22%23111315%22/%3E%3Crect x=%2296%22 y=%222%22 width=%228%22 height=%228%22 transform=%22rotate%2845 100 6%29%22 fill=%22%23111315%22/%3E%3C/svg%3E");
+  --joint-h: 14px;
+  --joint-size: 200px 14px;
+  --logo-size: 1.25rem;
+  --logo-weight: 800;
+  --logo-tracking: 0.01em;
+  --logo-case: none;
+  --f-logo: var(--f-display);
+  --nav-size: var(--step-0);
+  --btn-case: none;
+  --btn-tracking: 0.01em;
+}
+
+.logo b { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -0.01em; }
+.logo b i { font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 500; font-size: .62rem; letter-spacing: .38em; text-transform: uppercase; display: block; margin-top: .25rem; }
+.site-header .logo .lt > span { font-size: .62rem; letter-spacing: .08em; text-transform: none; }
+.nav a:not(.btn) { text-transform: uppercase; letter-spacing: .08em; font-size: .82rem; font-weight: 600; }
+.hero--overlay { text-align: center; }
+.hero--overlay .wrap { display: flex; flex-direction: column; align-items: center; }
+.hero--overlay .accent-bar { display: none; }
+.hero--overlay .kick-script { font-family: 'Montserrat', sans-serif; font-size: clamp(.9rem, .8rem + .4vw, 1.15rem); letter-spacing: .6em; text-transform: uppercase; color: #fff; margin-bottom: 1.4rem; }
+.hero--overlay h1 { max-width: 16ch; font-size: clamp(2.8rem, 1.4rem + 5.4vw, 6rem); }
+.hero--overlay h1 .hl { color: #fff; font-style: italic; }
+.hero--overlay h1::after { content: ""; display: block; width: min(60vw, 520px); height: 2px; background: #fff; margin: 2rem auto 0; }
+.hero--overlay .sub { margin-inline: auto; }
+.hero--overlay .actions, .hero--overlay .proof { justify-content: center; }
+.btn { text-transform: uppercase; letter-spacing: .14em; font-size: .82rem; font-weight: 600; }
+.statement { font-style: italic; }
+.hero--overlay .btn:not(.btn--alt), .site-header .nav .btn { --bg-btn: #ffffff; color: #111315; }
+.hero--overlay .btn:not(.btn--alt):hover, .site-header .nav .btn:hover { --bg-btn: #e9e5de; }
+.hero--overlay .btn--alt { --bg-btn: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px #fff; }
+.hero--overlay .btn--alt:hover { --bg-btn: rgba(255,255,255,.1); }
+@media (max-width: 720px) { .callbar a:last-child { background: #ffffff; color: #111315; } }
+.process .step { font-style: italic; }
+

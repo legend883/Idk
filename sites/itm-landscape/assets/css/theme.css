@@ -1,0 +1,87 @@
+:root {
+  --bg: #ffffff;
+  --bg-2: #f3f8ef;
+  --ink: #1a2214;
+  --ink-2: #3b4634;
+  --muted: #5c6855;
+  --line: rgba(26,34,20,.1);
+  --line-strong: rgba(26,34,20,.22);
+  --card: #ffffff;
+  --accent: #6abf3a;
+  --accent-hi: #7bcc4c;
+  --accent-ink: #10200a;
+  --accent-text: #2f6b17;
+  --accent-on-dark: #6abf3a;
+  --accent-2: #2f6b17;
+  --accent-2-hi: #3a7f1e;
+  --accent-2-ink: #ffffff;
+  --focus: #2f6b17;
+  --focus-ring: rgba(106,191,58,.35);
+  --error: #b3261e;
+  --star: #f5b72b;
+  --dark: #1c3311;
+  --dark-ink: #ffffff;
+  --dark-ink-2: #cfe0c4;
+  --topbar-bg: #1d3a8a;
+  --topbar-ink: #ffffff;
+  --header-bg: #ffffff;
+  --header-ink: #1a2214;
+  --nav-current: #2f6b17;
+  --scrim: rgba(0,0,0,.82);
+  --panel-bg: rgba(255,255,255,.9);
+  --panel-ink: #16181a;
+  --panel-ink-2: #3b3f44;
+  --trust-bg: #1a2214;
+  --trust-ink: #ffffff;
+  --trust-line: rgba(255,255,255,.12);
+  --trust-icon: #fff;
+  --band-bg: #6abf3a;
+  --band-ink: #10200a;
+  --band-ink-2: #1f3712;
+  --on-light-accent: #16181a;
+  --footer-bg: #121a0d;
+  --footer-ink: #e9e9e7;
+  --footer-head: #6abf3a;
+  --footer-line: rgba(255,255,255,.14);
+  --pagehead-bg: #f3f8ef;
+  --pagehead-ink: #1a2214;
+  --pagehead-ink-2: #3b4634;
+  --input-bg: #fff;
+  --input-line: rgba(0,0,0,.25);
+  --callbar-call: #1a2214;
+  --callbar-call-ink: #ffffff;
+  --f-display: 'Barlow', sans-serif;
+  --f-body: 'Barlow', sans-serif;
+  --f-script: cursive;
+  --display-weight: 700;
+  --display-tracking: -0.02em;
+  --display-case: none;
+  --display-leading: 1.02;
+  --radius-btn: 4px;
+  --radius-img: 8px;
+  --radius-lg: 12px;
+  --radius-input: 6px;
+  --joint: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2226%22%3E%3Crect y=%2220%22 width=%2248%22 height=%226%22 fill=%22%232f6b17%22/%3E%3Cpath d=%22M12 20c0-6-4-10-9-11 1 6 4 9 9 11zm0 0c0-7 4-12 10-13-1 7-5 11-10 13z%22 fill=%22%236abf3a%22/%3E%3Cpath d=%22M36 20c0-4-3-7-6-8 0 4 3 6 6 8zm0 0c0-5 3-8 7-9-1 5-3 7-7 9z%22 fill=%22%2357a52c%22/%3E%3C/svg%3E");
+  --joint-h: 26px;
+  --joint-size: 48px 26px;
+  --logo-size: 1.25rem;
+  --logo-weight: 800;
+  --logo-tracking: 0.01em;
+  --logo-case: none;
+  --f-logo: var(--f-display);
+  --nav-size: var(--step-0);
+  --btn-case: uppercase;
+  --btn-tracking: .04em;
+}
+
+.logo b { font-style: italic; font-weight: 800; font-size: 1.55rem; color: #6abf3a; letter-spacing: -0.01em; }
+.logo b i { font-size: .7em; color: #2f6b17; letter-spacing: .02em; text-transform: uppercase; }
+.site-footer .logo b i { color: #b8e39b; }
+.site-header .logo span { text-transform: none; letter-spacing: .04em; font-size: .74rem; }
+.nav a:not(.btn) { text-transform: uppercase; font-weight: 700; letter-spacing: .02em; font-size: .92rem; }
+.hero--overlay .kick-script { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: clamp(.9rem, .8rem + .4vw, 1.1rem); letter-spacing: .32em; text-transform: uppercase; color: #fff; }
+.hero--overlay .accent-bar { display: none; }
+.hero--overlay h1 { max-width: 17ch; }
+.trust svg { color: #6abf3a; }
+.statement em { color: #6abf3a; }
+

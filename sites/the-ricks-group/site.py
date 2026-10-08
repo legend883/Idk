@@ -26,7 +26,7 @@ CONFIG = {
     "theme_css": theme(
         f"""
 .site-header .logo b {{ font-family: 'Gelasio', serif; font-weight: 600; font-size: 1.55rem; color: {BLUE}; letter-spacing: 0; }}
-.site-header .logo span {{ color: {LIME}; opacity: 1; letter-spacing: .22em; font-size: .68rem; }}
+.site-header .logo span {{ color: {LIME}; opacity: 1; letter-spacing: .2em; font-size: .72rem; }}
 .site-footer .logo b {{ font-family: 'Gelasio', serif; font-weight: 600; font-size: 1.4rem; }}
 .site-header .logo b {{ color: #b9c8e4; }}
 .hero--panel h1 {{ color: {NAVY}; font-size: clamp(2.5rem, 1.5rem + 4vw, 4.6rem); }}

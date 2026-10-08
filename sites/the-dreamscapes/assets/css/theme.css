@@ -1,0 +1,91 @@
+:root {
+  --bg: #ffffff;
+  --bg-2: #eef7f5;
+  --ink: #13302b;
+  --ink-2: #34514b;
+  --muted: #56706a;
+  --line: rgba(19,48,43,.1);
+  --line-strong: rgba(19,48,43,.22);
+  --card: #ffffff;
+  --accent: #f2c230;
+  --accent-hi: #f7cf52;
+  --accent-ink: #0b5a4d;
+  --accent-text: #12806e;
+  --accent-on-dark: #f2c230;
+  --accent-2: #12806e;
+  --accent-2-hi: #169680;
+  --accent-2-ink: #ffffff;
+  --focus: #1878a8;
+  --focus-ring: rgba(24,120,168,.3);
+  --error: #b3261e;
+  --star: #f2c230;
+  --dark: #0b5a4d;
+  --dark-ink: #ffffff;
+  --dark-ink-2: #cfe7e1;
+  --topbar-bg: #15171a;
+  --topbar-ink: #fff;
+  --header-bg: #ffffff;
+  --header-ink: #13302b;
+  --nav-current: inherit;
+  --scrim: rgba(0,0,0,.82);
+  --panel-bg: rgba(255,255,255,.9);
+  --panel-ink: #16181a;
+  --panel-ink-2: #3b3f44;
+  --trust-bg: #12806e;
+  --trust-ink: #ffffff;
+  --trust-line: rgba(255,255,255,.2);
+  --trust-icon: #fff;
+  --band-bg: #1878a8;
+  --band-ink: #ffffff;
+  --band-ink-2: #d6eaf4;
+  --on-light-accent: #0b5a4d;
+  --footer-bg: #0a3d35;
+  --footer-ink: #e9e9e7;
+  --footer-head: #f2c230;
+  --footer-line: rgba(255,255,255,.14);
+  --pagehead-bg: #eef7f5;
+  --pagehead-ink: #13302b;
+  --pagehead-ink-2: #34514b;
+  --input-bg: #fff;
+  --input-line: rgba(0,0,0,.25);
+  --callbar-call: #12806e;
+  --callbar-call-ink: #ffffff;
+  --f-display: 'Gloock', serif;
+  --f-body: 'Nunito Sans', sans-serif;
+  --f-script: cursive;
+  --display-weight: 400;
+  --display-tracking: -0.01em;
+  --display-case: none;
+  --display-leading: 1.04;
+  --radius-btn: 8px;
+  --radius-img: 20px;
+  --radius-lg: 24px;
+  --radius-input: 10px;
+  --joint: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%2230%22%3E%3Cpath d=%22M0 22 C 60 2, 130 2, 260 18 V30 H0Z%22 fill=%22%2312806e%22/%3E%3Cpath d=%22M0 26 C 70 10, 150 8, 260 24%22 fill=%22none%22 stroke=%22%23f2c230%22 stroke-width=%224%22/%3E%3C/svg%3E");
+  --joint-h: 30px;
+  --joint-size: 260px 30px;
+  --logo-size: 1.25rem;
+  --logo-weight: 800;
+  --logo-tracking: 0.01em;
+  --logo-case: none;
+  --f-logo: var(--f-display);
+  --nav-size: var(--step-0);
+  --btn-case: none;
+  --btn-tracking: 0.01em;
+}
+
+.logo b { font-family: 'Nunito Sans', sans-serif; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; font-size: 1.45rem; color: #1878a8; }
+.site-header .logo span { color: #12806e; letter-spacing: .32em; font-size: .62rem; opacity: 1; }
+.site-footer .logo b { color: #fff; }
+.nav a:not(.btn) { color: #12806e; font-weight: 800; }
+.nav a[aria-current="page"] { color: #1878a8; }
+.hero--split { background: linear-gradient(180deg, #eef7f5, #ffffff); }
+.hero--split h1 { font-size: clamp(2.8rem, 1.4rem + 5vw, 5.4rem); }
+.hero--split .hl { color: #12806e; }
+.hero--split .grid > .photo { border-radius: 28px 28px 28px 120px; }
+.hero--split .grid > .photo .ph-label { left: auto; right: .8rem; }
+@media (max-width: 900px) { .hero--split .grid > .photo { border-radius: 20px 20px 20px 70px; } }
+.tile .go { color: #0b5a4d; }
+.trust svg { color: #f2c230; }
+.statement em { color: #f2c230; }
+
