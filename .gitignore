@@ -1,1 +1,3 @@
 sites/*/.impeccable/review/
+__pycache__/
+*.pyc
