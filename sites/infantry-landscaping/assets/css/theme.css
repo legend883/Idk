@@ -1,0 +1,85 @@
+:root {
+  --bg: #ffffff;
+  --bg-2: #f3f2ec;
+  --ink: #1b1d16;
+  --ink-2: #3a3d31;
+  --muted: #5d6152;
+  --line: rgba(0,0,0,.1);
+  --line-strong: rgba(0,0,0,.22);
+  --card: #ffffff;
+  --accent: #4f5938;
+  --accent-hi: #5d6943;
+  --accent-ink: #ffffff;
+  --accent-text: #4f5938;
+  --accent-on-dark: #c9c19a;
+  --accent-2: #1b1d16;
+  --accent-2-hi: #000;
+  --accent-2-ink: #ffffff;
+  --focus: #4f5938;
+  --focus-ring: rgba(79,89,56,.3);
+  --error: #b3261e;
+  --star: #e8a923;
+  --dark: #2f3521;
+  --dark-ink: #ffffff;
+  --dark-ink-2: #d4d6c6;
+  --topbar-bg: #4f5938;
+  --topbar-ink: #ffffff;
+  --header-bg: #ffffff;
+  --header-ink: #1b1d16;
+  --nav-current: #4f5938;
+  --scrim: rgba(0,0,0,.82);
+  --panel-bg: rgba(255,255,255,.9);
+  --panel-ink: #16181a;
+  --panel-ink-2: #3b3f44;
+  --trust-bg: #1b1d16;
+  --trust-ink: #ffffff;
+  --trust-line: rgba(255,255,255,.12);
+  --trust-icon: #fff;
+  --band-bg: #4f5938;
+  --band-ink: #ffffff;
+  --band-ink-2: #e6e8db;
+  --on-light-accent: #2f3521;
+  --footer-bg: #16180f;
+  --footer-ink: #e9e9e7;
+  --footer-head: #c9c19a;
+  --footer-line: rgba(255,255,255,.14);
+  --pagehead-bg: #2f3521;
+  --pagehead-ink: #ffffff;
+  --pagehead-ink-2: #d4d6c6;
+  --input-bg: #fff;
+  --input-line: rgba(0,0,0,.25);
+  --callbar-call: #1b1d16;
+  --callbar-call-ink: #ffffff;
+  --f-display: 'Saira Condensed', sans-serif;
+  --f-body: 'Poppins', sans-serif;
+  --f-script: cursive;
+  --display-weight: 800;
+  --display-tracking: 0.005em;
+  --display-case: uppercase;
+  --display-leading: 0.98;
+  --radius-btn: 2px;
+  --radius-img: 2px;
+  --radius-lg: 2px;
+  --radius-input: 2px;
+  --joint: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2236%22 height=%2220%22%3E%3Crect width=%2236%22 height=%2220%22 fill=%22%234f5938%22/%3E%3Cpath d=%22M0 20 L10 0 H18 L8 20Z M18 20 L28 0 H36 L26 20Z%22 fill=%22%23c9c19a%22/%3E%3C/svg%3E");
+  --joint-h: 20px;
+  --joint-size: 36px 20px;
+  --logo-size: 1.25rem;
+  --logo-weight: 800;
+  --logo-tracking: 0.01em;
+  --logo-case: none;
+  --f-logo: var(--f-display);
+  --nav-size: var(--step-0);
+  --btn-case: uppercase;
+  --btn-tracking: .06em;
+}
+
+.site-header .logo b { font-family: 'Saira Condensed', sans-serif; font-size: 1.5rem; text-transform: uppercase; letter-spacing: .02em; }
+.site-header .logo span { color: #4f5938; opacity: 1; }
+.nav a:not(.btn) { text-transform: uppercase; letter-spacing: .04em; font-weight: 600; font-size: .92rem; }
+.hero--overlay h1 { max-width: 14ch; }
+.hero--overlay .accent-bar { background: #c9c19a; }
+.trust svg { color: #c9c19a; }
+.tile .go { border-radius: 2px; }
+.process li { border-top-width: 4px; }
+

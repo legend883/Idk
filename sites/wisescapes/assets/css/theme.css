@@ -1,0 +1,87 @@
+:root {
+  --bg: #fbf9f5;
+  --bg-2: #eef3f1;
+  --ink: #1d2b2d;
+  --ink-2: #3a4a4c;
+  --muted: #5b6a6b;
+  --line: rgba(29,43,45,.1);
+  --line-strong: rgba(29,43,45,.22);
+  --card: #ffffff;
+  --accent: #2a717d;
+  --accent-hi: #338591;
+  --accent-ink: #ffffff;
+  --accent-text: #2a717d;
+  --accent-on-dark: #9fd3d8;
+  --accent-2: #3f5a2e;
+  --accent-2-hi: #4b6b37;
+  --accent-2-ink: #ffffff;
+  --focus: #2a717d;
+  --focus-ring: rgba(42,113,125,.28);
+  --error: #b3261e;
+  --star: #d9a521;
+  --dark: #1c4f58;
+  --dark-ink: #ffffff;
+  --dark-ink-2: #cfe3e5;
+  --topbar-bg: #f1eee7;
+  --topbar-ink: #1d2b2d;
+  --header-bg: #ffffff;
+  --header-ink: #1d2b2d;
+  --nav-current: #2a717d;
+  --scrim: rgba(0,0,0,.82);
+  --panel-bg: rgba(255,255,255,.9);
+  --panel-ink: #16181a;
+  --panel-ink-2: #3b3f44;
+  --trust-bg: #2a717d;
+  --trust-ink: #ffffff;
+  --trust-line: rgba(255,255,255,.2);
+  --trust-icon: #ffffff;
+  --band-bg: #1c4f58;
+  --band-ink: #ffffff;
+  --band-ink-2: #cfe3e5;
+  --on-light-accent: #1c4f58;
+  --footer-bg: #142f34;
+  --footer-ink: #e9e9e7;
+  --footer-head: #9fd3d8;
+  --footer-line: rgba(255,255,255,.14);
+  --pagehead-bg: #eef3f1;
+  --pagehead-ink: #1d2b2d;
+  --pagehead-ink-2: #3a4a4c;
+  --input-bg: #fff;
+  --input-line: rgba(0,0,0,.25);
+  --callbar-call: #3f5a2e;
+  --callbar-call-ink: #ffffff;
+  --f-display: 'Gilda Display', serif;
+  --f-body: 'Mulish', sans-serif;
+  --f-script: cursive;
+  --display-weight: 400;
+  --display-tracking: -0.005em;
+  --display-case: none;
+  --display-leading: 1.08;
+  --radius-btn: 2px;
+  --radius-img: 0px;
+  --radius-lg: 0px;
+  --radius-input: 2px;
+  --joint: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%2234%22%3E%3Cpath d=%22M0 8 C 40 0, 80 16, 120 8 S 200 0, 240 8%22 fill=%22none%22 stroke=%22%232a717d%22 stroke-width=%221.5%22/%3E%3Cpath d=%22M0 17 C 40 9, 80 25, 120 17 S 200 9, 240 17%22 fill=%22none%22 stroke=%22%232a717d%22 stroke-opacity=%22.6%22 stroke-width=%221.5%22/%3E%3Cpath d=%22M0 26 C 40 18, 80 34, 120 26 S 200 18, 240 26%22 fill=%22none%22 stroke=%22%232a717d%22 stroke-opacity=%22.35%22 stroke-width=%221.5%22/%3E%3C/svg%3E");
+  --joint-h: 34px;
+  --joint-size: 240px 34px;
+  --logo-size: 1.25rem;
+  --logo-weight: 800;
+  --logo-tracking: 0.01em;
+  --logo-case: none;
+  --f-logo: var(--f-display);
+  --nav-size: var(--step-0);
+  --btn-case: none;
+  --btn-tracking: 0.01em;
+}
+
+.site-header .logo b { font-family: 'Gilda Display', serif; font-weight: 400; font-size: 1.6rem; color: #3f5a2e; }
+.site-header .logo span { color: #2a717d; letter-spacing: .14em; font-size: .64rem; }
+.site-footer .logo b { font-family: 'Gilda Display', serif; font-weight: 400; font-size: 1.5rem; }
+.nav a:not(.btn) { text-transform: uppercase; letter-spacing: .06em; font-size: .86rem; font-weight: 700; }
+.hero--overlay h1 { max-width: 16ch; font-size: clamp(2.8rem, 1.4rem + 5vw, 5.6rem); }
+.hero--overlay .hl { color: #bfe3e6; font-style: italic; }
+.hero--overlay .accent-bar { display: none; }
+.joint { background-color: #fbf9f5; }
+.btn { text-transform: uppercase; letter-spacing: .06em; font-size: .92rem; }
+.statement em { font-style: italic; }
+
