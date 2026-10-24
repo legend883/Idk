@@ -1,0 +1,20 @@
+<title>The $20 Auction</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A family bidding party game: everyone starts with $20, wins items at auction, and builds a dream creation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap">
+<style>
+/*STYLES*/
+</style>
+<div id="app"><p style="padding:24px;font-family:sans-serif">Loading the auction&hellip;</p></div>
+<noscript><p style="padding:24px">The $20 Auction needs JavaScript turned on.</p></noscript>
+<script>
+/*SCRIPTS*/
+(function () {
+  var hot = window.claude && window.claude.hot;
+  if (hot && hot.snapshot) hot.snapshot(function () { return TDA.snapshot(); });
+  function start(data) { TDA.boot(document.getElementById('app'), data && data.G !== undefined ? data : null); }
+  if (hot && hot.ready) hot.ready(start); else start(hot && hot.data ? hot.data : null);
+})();
+</script>
