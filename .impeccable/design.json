@@ -1,0 +1,10 @@
+{
+  "name": "The $20 Auction",
+  "theme": "single-light",
+  "colors": { "ink": "#14110F", "paper": "#FFFFFF", "ground": "#FFE14D", "groundDot": "#F2A900", "caption": "#FFE94D", "cyan": "#00AEEF", "magenta": "#EC008C", "red": "#E4002B", "cash": "#00A651", "warn": "#FF8200", "desk": "#191513" },
+  "players": ["#E4002B", "#0072CE", "#00A651", "#FF8200", "#7B2CBF", "#00B5B8", "#E6007E", "#6B4226"],
+  "fonts": { "display": "Bangers", "body": "Comic Neue" },
+  "border": "3px solid #14110F",
+  "radius": { "panel": "4px", "button": "10px", "chip": "999px" },
+  "gutter": "14px"
+}

@@ -104,15 +104,15 @@
   function homeScreen() {
     var h = '<div class="wrap">';
     h += '<section class="splash">' +
-      '<div class="panel splash-title"><span class="kicker-price">Everyone starts with $20</span>' +
+      '<div class="panel splash-title"><div class="splash-burst" aria-hidden="true">' + burst('#FFE94D', 14, 0.66) + '<span>$20<small>each</small></span></div>' +
       '<h1>The $20<br>Auction</h1><div class="sub">Build Your Dream</div>' +
       '<p class="lede">A bidding party game for 2 to 8 players on one phone, tablet or TV. Win items, spend wisely, and watch your creation come to life.</p>' +
       '<div class="row"><a class="btn btn-yellow btn-big" href="#modes">Pick a game ' + icon('arrow') + '</a></div></div>' +
       '<div class="howto">' +
-      '<div class="panel"><span class="big">💵</span><span class="step">Everyone gets $20</span><p>Play money. Nobody can borrow or go below $0.</p></div>' +
-      '<div class="panel"><span class="big">🎁</span><span class="step">The host reveals an item</span><p>One surprise at a time. No peeking ahead.</p></div>' +
-      '<div class="panel"><span class="big">🙋</span><span class="step">Bid or pass</span><p>Highest bid wins and pays it. Everyone else keeps their money.</p></div>' +
-      '<div class="panel"><span class="big">🏆</span><span class="step">Build and vote</span><p>Your creation grows with every win. The family votes on the best.</p></div>' +
+      '<div class="panel"><span class="big">1</span><span class="caption-box step">Everyone gets $20</span><p>Play money. Nobody can borrow or go below $0.</p></div>' +
+      '<div class="panel"><span class="big">2</span><span class="caption-box step">The host reveals an item</span><p>One surprise at a time. No peeking ahead.</p></div>' +
+      '<div class="panel"><span class="big">3</span><span class="caption-box step">Bid or pass</span><p>Highest bid wins and pays it. Everyone else keeps their money.</p></div>' +
+      '<div class="panel"><span class="big">4</span><span class="caption-box step">Build and vote</span><p>Your creation grows with every win. The family votes on the best.</p></div>' +
       '</div></section>';
     if (G && !G.over) {
       var m = T.modeById[G.modeId];
@@ -135,7 +135,7 @@
       list.forEach(function (m) {
         var idx = T.modes.indexOf(m);
         var cv = '<button class="cover" data-act="pick-mode" data-id="' + esc(m.id) + '">' + coverArt(m, m.cat === 'custom' ? null : idx) +
-          '<div class="cover-body"><span class="tag">' + m.rounds.length + ' items to win</span><h3>' + esc(m.name) + '</h3><p>' + esc(m.blurb) + '</p></div></button>';
+          '<div class="cover-body"><h3>' + esc(m.name) + '</h3><p>' + esc(m.blurb) + '</p></div></button>';
         h += m.custom ? '<div class="cover-slot">' + cv + '<button class="btn btn-small edit" data-act="edit-custom" data-id="' + esc(m.id) + '">Edit</button></div>' : cv;
         n++;
       });
@@ -363,7 +363,7 @@
     if (a.status === 'loading') h += a.url ? '<span class="ai-loading"><span class="spin"></span> Painting the newest win…</span>' : '<p><span class="spin"></span> The AI painter is working. This takes 10 to 40 seconds.</p>';
     h += (compact ? '' : '</div>') + '<div class="ai-bar"' + (compact ? ' style="border-top:0"' : '') + '><span class="grow">';
     if (compact && a.status !== 'error') h += (AI_BLOCKED ? AI_BLOCKED_MSG : !SETTINGS.ai && !readOnly ? 'AI paintings are off. Turn them on in Host menu \u2192 Settings.' : p.wins.length ? 'No AI painting yet. ' : 'Win an item and the AI painter will paint this creation.');
-    if (a.status === 'error') h += '<b style="color:var(--red)">Painting failed.</b> ' + esc(a.error || '') + (a.url ? ' Showing the last painting that worked.' : '') + ' The drawn creation is always up to date.';
+    if (a.status === 'error') h += '<b style="color:var(--red)" title="' + esc(a.error || '') + '">Painting failed.</b> ' + (readOnly || UI.screen === 'results' ? 'Try again in a moment.' : 'The AI painter didn\u2019t answer. ' + (a.url ? 'Showing the last painting that worked. ' : '') + 'The drawing above is always up to date.');
     else if (a.status === 'ok' && a.sig !== T.AI.signature(p)) h += 'New wins since this painting.';
     else if (a.status === 'ok') h += 'AI painting of all ' + p.wins.length + ' features, by ' + T.AI.provider + '.';
     else if (a.status === 'loading') h += 'Painting with every feature ' + esc(p.name) + ' owns.';
