@@ -534,6 +534,10 @@ def page(path, title, meta, body, current="", schema_extra=(), trail=None):
 </body>
 </html>
 """
+    # Folder links point at index.html so pages also work opened from disk or on hosts without directory indexes.
+    doc = re.sub(r'href="((?:\.\./)*[\w./-]*/)?((?:#[\w-]+)?)"',
+                 lambda m: m.group(0) if m.group(1) is None else f'href="{m.group(1)}index.html{m.group(2)}"', doc)
+    doc = doc.replace('href=""', 'href="index.html"')
     out = ROOT / path
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(doc)
