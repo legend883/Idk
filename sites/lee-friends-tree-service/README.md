@@ -11,3 +11,4 @@ Private preview of a new site for Lee Friend's Tree Service, Inc. (Loganville, G
 2. Remove `<meta name="robots" content="noindex, nofollow">` (in `page()` in build.py) and swap robots.txt for the commented launch version.
 3. Add real photos (replace `photo(...)` slots), add the BBB / ISA / Google Maps URLs to `sameAs`.
 4. Connect the quote form to an inbox or form service.
+5. Set up the 301 redirects in `REDIRECTS.md`. Service, About, FAQ, Contact, Testimonials, Areas, and Grayson pages keep their current URLs.

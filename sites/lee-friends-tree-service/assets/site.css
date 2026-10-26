@@ -13,6 +13,7 @@
   --kraft: #d8bf91;
   --kraft-light: #e8d8b6;
   --kraft-dark: #9c7845;
+  --gold: #d6b43a; /* nod to the gold lettering in their current logo */
   --saw: #c4450c;
   --saw-hot: #a93a08;
   --ink: #1f1c16;
@@ -63,7 +64,7 @@ p { margin: 0 0 var(--s2); }
 .site-head { background: var(--pine); color: var(--on-pine); position: sticky; top: 0; z-index: 20; border-bottom: 3px solid var(--kraft-dark); }
 .head-in { display: flex; align-items: center; gap: var(--s3); min-height: 4.5rem; }
 .wordmark { display: flex; flex-direction: column; text-decoration: none; color: var(--on-pine); line-height: 1; margin-right: auto; }
-.wm-top { font: 700 1.6rem/1 var(--display); letter-spacing: -.01em; }
+.wm-top { font: 700 1.6rem/1 var(--display); letter-spacing: -.01em; color: var(--gold); }
 .wm-sub { font: 600 .82rem/1.3 var(--body); letter-spacing: .04em; color: var(--kraft); margin-top: .2rem; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .25rem; }
 .nav a { display: block; color: var(--on-pine); text-decoration: none; font-weight: 600; padding: .55rem .75rem; border-radius: 3px; }
@@ -171,7 +172,15 @@ p { margin: 0 0 var(--s2); }
 .tag-hole { position: absolute; top: 1rem; left: 50%; width: 1.1rem; height: 1.1rem; margin-left: -.55rem; border-radius: 50%; background: var(--kraft); box-shadow: inset 0 0 0 3px var(--kraft-dark); }
 .tag blockquote { margin: 0; }
 .tag blockquote p { font: 600 1.15rem/1.5 var(--display); color: var(--pine-deep); }
-.tag-who { margin: 0; }
+.tag-who { margin: 0; display: flex; flex-direction: column; gap: .1rem; }
+.tag-who strong { font-weight: 700; color: var(--pine-deep); }
+.tag-who span { font-size: .85rem; color: var(--ink-soft); }
+.tags-all { align-items: start; }
+.tags-all .tag { transform: none; }
+.reviews .more a, .tags-all + .more a { font-weight: 700; }
+.includes { list-style: none; padding: 0; margin: 0 0 var(--s3); display: flex; flex-wrap: wrap; gap: .5rem; }
+.includes li { padding: .35rem .8rem; background: var(--kraft); border: 1.5px solid var(--kraft-dark); border-radius: 999px; font-weight: 600; font-size: .95rem; }
+.prose h3 { margin-top: var(--s3); }
 
 /* towns */
 .town-list { list-style: none; margin: var(--s3) 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -270,7 +279,9 @@ p { margin: 0 0 var(--s2); }
 .site-foot { background: var(--pine-deep); color: var(--on-pine-soft); padding: var(--s5) 0 var(--s3); font-size: .95rem; }
 .site-foot a { color: var(--on-pine); }
 .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--s4); }
-.foot-name { font: 700 1.4rem/1.2 var(--display); color: var(--on-pine); }
+.foot-name { font: 700 1.4rem/1.2 var(--display); color: var(--gold); margin-bottom: .2rem; }
+.foot-tag { font-style: italic; color: var(--kraft); }
+.foot-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 .foot-phone { font: 700 1.5rem/1 var(--display); }
 .foot-h { font: 700 1.05rem/1.2 var(--display); color: var(--kraft); margin: 0 0 .6rem; }
 .site-foot ul { list-style: none; margin: 0 0 var(--s3); padding: 0; display: grid; gap: .35rem; }
@@ -291,12 +302,14 @@ p { margin: 0 0 var(--s2); }
   .page-hero-ico { display: none; }
   .page-hero-in { grid-template-columns: 1fr; }
 }
-@media (max-width: 860px) {
-  .head-call { display: none; }
+@media (max-width: 1100px) {
   .nav-toggle { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.75rem; padding: .4rem .8rem; background: transparent; color: var(--on-pine); border: 2px solid rgb(242 230 204 / .5); border-radius: 4px; font: 600 1rem var(--body); cursor: pointer; }
   .nav ul { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; background: var(--pine); padding: .5rem 1rem 1rem; border-bottom: 3px solid var(--kraft-dark); }
   .nav.open ul { display: flex; }
   .nav a { padding: .85rem .5rem; font-size: 1.1rem; border-bottom: 1px solid rgb(242 230 204 / .15); }
+}
+@media (max-width: 860px) {
+  .head-call { display: none; }
   .callbar { display: flex; position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; align-items: center; justify-content: center; gap: .6rem; min-height: 3.6rem; background: var(--saw); color: #fff; font: 700 1.15rem var(--body); text-decoration: none; box-shadow: 0 -6px 16px -8px rgb(0 0 0 / .5); padding-bottom: env(safe-area-inset-bottom); }
   body { padding-bottom: 3.6rem; }
 }

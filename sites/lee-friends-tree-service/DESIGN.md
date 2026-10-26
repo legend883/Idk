@@ -11,6 +11,7 @@ World: feed-store print. A Georgia farm co-op print shop: two-color printing on 
 | --kraft | #d8bf91 | Kraft bands, seal strip, woodcut ink on pine |
 | --kraft-light | #e8d8b6 | Page ground, boards, tags, form |
 | --kraft-dark | #9c7845 | Rules, dashed photo slots |
+| --gold | #d6b43a | Wordmark and footer name (nod to the gold lettering in their current logo) |
 | --saw | #c4450c | Call buttons, closing CTA band, focus ring (white text) |
 | --confirm-bg | #fff07a | [CONFIRM] tags (preview only) |
 

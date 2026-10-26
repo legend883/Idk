@@ -4,51 +4,43 @@ Verify each item with the owner. Each one shows on the preview as a yellow [CONF
 
 1. Typical tree removal price range, if the owner wants one published
 2. Whether stump grinding is quoted separately or bundled
-3. Whether Lee Friend's helps customers with tree removal permits
-4. Confirm the crews do not top trees
-5. After-hours and weekend emergency availability (an old Duluth page says 24/7)
-6. What happens to stump grinding chips: left to fill the hole, or hauled away
-7. Typical time per stump, for a direct answer
-8. Typical grinding depth in inches
-9. How free wood chips work: drop-off, pickup, minimum load, waiting list
-10. The current site mentions bagged mulch recycling. Confirm whether mulch is sold and how
-11. Firewood delivery area and fee
-12. Which species are usually in stock (oak, hickory, etc.)
-13. Firewood prices and load sizes (cord, half cord, truckload)
-14. Free estimates: only the old Duluth page says estimates are free. Confirm before publishing
-15. Licensed and insured: confirm, and list license or insurance details if the owner wants them shown
-16. Show the street address (3474 Johnson Rd) publicly? If yes, it is added to every page and the schema
-17. Add one recent Loganville job (street or neighborhood, tree, photo) to make this page even more local
-18. Add one recent Grayson job (neighborhood, tree, photo) for local proof
-19. Add a Snellville commercial or residential job (with photo) for local proof
-20. Confirm firewood delivery reaches Monroe, and the fee
-21. Add one recent Monroe job (with photo) for local proof
-22. Reviewer name for the 'best value' review, and check the wording against the current Testimonials page
-23. Full text and reviewer name for the 'Lisa and Jennifer' review (only an excerpt could be read)
-24. Full text and reviewer name for the 'same day quote' review (only an excerpt could be read)
-25. Founding year: the current site says 1989, other listings say 1991. Pick one
-26. Jennifer Perrone is still on staff as the ISA Certified Arborist
-27. BBB profile: does the company have one? If not, remove this seal
-28. Crew or family photo from the current site's Gallery or About page
-29. Business hours (the current Eco-Friendly page lists Saturday as closed)
-30. Google Maps / Google Business Profile link from the current site
-31. Real tree removal photo from the current site's Gallery
-32. Real tree trimming & pruning photo from the current site's Gallery
-33. Real storm damage tree removal photo from the current site's Gallery
-34. Real stump grinding photo from the current site's Gallery
-35. Real eco-friendly wood recycling photo from the current site's Gallery
-36. Real firewood sales photo from the current site's Gallery
-37. Owners' names and a few lines of the family story in their own words (who Lee is, how they started, family members in the business)
-38. Photo of the owners
-39. Photo of Jennifer Perrone
-40. Jennifer's bio: years of experience, ISA certification number, specialties, and anything she'd like customers to know
-41. Confirm the Georgia Arborist Association membership and Alpharetta contractor listing are current before showing them
-42. Direct link to Jennifer Perrone's ISA profile or certification number
-43. BBB profile URL and rating, or remove this item if there is no profile
-44. TCIA membership: confirm, or remove this item
-45. Google Maps link to the business listing, for a 'Find us on Google Maps' link here
-46. A real job photo from Loganville
-47. A real job photo from Grayson
-48. A real job photo from Snellville
-49. A real job photo from Monroe
-50. Where quote requests should be delivered (email address or form service) before launch
+3. Confirm the crews do not top trees
+4. After-hours and weekend emergency availability (an old Duluth page says 24/7)
+5. How free wood chips work: drop-off, pickup, minimum load, waiting list
+6. Firewood delivery area and fee
+7. Which species are usually in stock (oak, hickory, etc.)
+8. Firewood prices and load sizes (cord, half cord, truckload)
+9. Licensed and insured: the current site says 'licensed tree removal contractors' and 'fully insured'. Confirm, and add license or insurance details if the owner wants them shown
+10. Show the street address (3474 Johnson Rd) publicly? If yes, it is added to every page and the schema
+11. Add one recent Loganville job (street or neighborhood, tree, photo) to make this page even more local
+12. Add one recent Grayson job (neighborhood, tree, photo) for local proof
+13. Add a Snellville commercial or residential job (with photo) for local proof
+14. Confirm firewood delivery reaches Monroe, and the fee
+15. Add one recent Monroe job (with photo) for local proof
+16. Founding year: the current site says 1989 everywhere, but some outside listings say 1991. Confirm 1989
+17. Jennifer Perrone is the ISA Certified Arborist on staff (the current site never names the arborist; public listings name her)
+18. BBB profile: does the company have one? If not, remove this seal
+19. Real crew or family photo. Most current-site photos are stock; the one real crew shot is home-imge-1.webp (loader carrying a log)
+20. Business hours: these match the current site; confirm with the owner
+21. A real tree removal job photo (the current site's tree removal photo is stock)
+22. A real tree trimming & pruning job photo (the current site's tree trimming & pruning photo is stock)
+23. A real storm damage tree removal job photo (the current site's storm damage tree removal photo is stock)
+24. A real stump grinding job photo (the current site's stump grinding photo is stock)
+25. A real eco-friendly wood recycling job photo (the current site's eco-friendly wood recycling photo is stock)
+26. A real firewood sales job photo (the current site's firewood sales photo is stock)
+27. Owners' names and a few lines of the family story in their own words (who Lee is, how they started, family members in the business)
+28. The mascot dog's name and a photo
+29. Roles of Lisa, Cornbread, Derrick, and John McGowan, and OK to name them on the site
+30. Photo of the owners
+31. Photo of Jennifer Perrone
+32. Jennifer's bio: years of experience, ISA certification number, specialties, and anything she'd like customers to know
+33. Confirm the Georgia Arborist Association membership and Alpharetta contractor listing are current before showing them
+34. Direct link to Jennifer Perrone's ISA profile or certification number
+35. BBB profile URL and rating, or remove this item if there is no profile
+36. TCIA membership: confirm, or remove this item
+37. A real job photo from Loganville
+38. A real job photo from Grayson
+39. A real job photo from Snellville
+40. A real job photo from Monroe
+41. Show this email on the Contact page? It appears on the current Suwanee page
+42. Where quote requests should be delivered (email address or form service) before launch
