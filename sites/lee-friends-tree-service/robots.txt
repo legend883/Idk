@@ -1,0 +1,6 @@
+# PRIVATE PREVIEW: blocks all crawlers. At launch replace with:
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://www.leefriendstreeservice.com/sitemap.xml
+User-agent: *
+Disallow: /
