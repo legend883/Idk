@@ -16,6 +16,13 @@
     });
   }
 
+  // Until the photo files are in assets/photos, show a plain block instead of a broken image.
+  document.querySelectorAll(".shot img").forEach(function (img) {
+    function miss() { img.closest(".shot").classList.add("missing"); }
+    if (img.complete && !img.naturalWidth) miss();
+    img.addEventListener("error", miss);
+  });
+
   var form = document.getElementById("quote");
   if (form) {
     form.addEventListener("submit", function (e) {
