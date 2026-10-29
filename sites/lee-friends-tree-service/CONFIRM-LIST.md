@@ -17,17 +17,17 @@ Verify each item with the owner. Each one shows on the preview as a yellow [CONF
 13. Add a Snellville commercial or residential job (with photo) for local proof
 14. Confirm firewood delivery reaches Monroe, and the fee
 15. Add one recent Monroe job (with photo) for local proof
-16. Founding year: the current site says 1989 everywhere, but some outside listings say 1991. Confirm 1989
-17. Jennifer Perrone is the ISA Certified Arborist on staff (the current site never names the arborist; public listings name her)
-18. BBB profile: does the company have one? If not, remove this seal
-19. Real crew or family photo. Most current-site photos are stock; the one real crew shot is home-imge-1.webp (loader carrying a log)
+16. Jennifer Perrone is the ISA Certified Arborist on staff (the current site never names the arborist; public listings name her)
+17. BBB profile: does the company have one? If not, remove this item
+18. Founding year: the current site says 1989 everywhere, but some outside listings say 1991. Confirm 1989
+19. Replace with a real photo of Jennifer Perrone or the crew on a job
 20. Business hours: these match the current site; confirm with the owner
-21. A real tree removal job photo (the current site's tree removal photo is stock)
-22. A real tree trimming & pruning job photo (the current site's tree trimming & pruning photo is stock)
-23. A real storm damage tree removal job photo (the current site's storm damage tree removal photo is stock)
-24. A real stump grinding job photo (the current site's stump grinding photo is stock)
-25. A real eco-friendly wood recycling job photo (the current site's eco-friendly wood recycling photo is stock)
-26. A real firewood sales job photo (the current site's firewood sales photo is stock)
+21. Replace with a real tree removal job photo
+22. Replace with a real tree trimming & pruning job photo
+23. Replace with a real storm damage tree removal job photo
+24. Replace with a real stump grinding job photo
+25. Replace with a real eco-friendly wood recycling job photo
+26. Replace with a real firewood sales job photo
 27. Owners' names and a few lines of the family story in their own words (who Lee is, how they started, family members in the business)
 28. The mascot dog's name and a photo
 29. Roles of Lisa, Cornbread, Derrick, and John McGowan, and OK to name them on the site

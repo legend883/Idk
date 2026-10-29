@@ -465,10 +465,39 @@ HOME_FIRST = (f"Lee Friend's Tree Service is a family-owned tree service in Loga
 
 NAV = [("Services", "services/"), ("Service Areas", AREAS), ("Reviews", "testimonials/"), ("About", "about/"), ("FAQ", "faq/"), ("Contact", "contact/")]
 
+# Sample photos generated for the preview (Higgsfield, gpt_image_2_5). Every one is labeled "Sample photo"
+# on the page and gets replaced by the owner's real job photos before launch. get-photos.py downloads them.
+PHOTO_ALT = {
+    "hero": "Arborist roped into a large oak, cutting a limb at golden hour",
+    "removal": "Tree crew lowering a cut section of pine beside a brick house",
+    "trimming": "Bucket truck lifting an arborist into a tall pine to trim limbs",
+    "storm": "Pine tree blown down across a wooden fence and driveway after a storm",
+    "stump": "Stump grinder chewing a large stump down below ground level",
+    "recycling": "Wood chipper blowing fresh wood chips into a dump truck",
+    "firewood": "Rows of split, seasoned oak firewood stacked under a shed roof",
+    "arborist": "Arborist checking the trunk of a large oak before deciding what it needs",
+    "dusk": "Tall Georgia pines silhouetted against an orange dusk sky",
+    "aerial": "Aerial view of a wooded Georgia neighborhood with tall pines between the homes",
+}
+SVC_PHOTO = {"removal": "removal", "trimming": "trimming", "storm": "storm", "stump": "stump",
+             "recycling": "recycling", "firewood": "firewood"}
+
+
+def bg(key):
+    return f"--img:url('{{P}}assets/photos/{key}.jpg')"
+
+
+def shot(key, note=None, cls=""):
+    """A sample photo with its visible label and, until a real job photo replaces it, a confirm note."""
+    note = note or "Replace this sample photo with a real job photo"
+    return (f'<figure class="shot {cls}"><img src="{{P}}assets/photos/{key}.jpg" alt="{html.escape(PHOTO_ALT[key])}" '
+            f'loading="lazy" decoding="async" width="1400" height="933"><span class="sample">Sample photo</span>'
+            f'<figcaption>{confirm(note)}</figcaption></figure>')
+
 
 def wordmark(p):
     return (f'<a class="wordmark" href="{p}" aria-label="{html.escape(B["name"])} home">'
-            f'<span class="wm-top">Lee Friend’s</span><span class="wm-sub">Tree Service, Inc.</span></a>')
+            f'<span class="wm-top">Lee Friend’s</span><span class="wm-sub">Tree Service, Inc. · Est. {B["founded"]}</span></a>')
 
 
 def header(p, current):
@@ -477,6 +506,7 @@ def header(p, current):
     return f"""<a class="skip" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap topbar-in">
   <span>{icon('pin')} Loganville, GA {B['zip']}</span>
+  <span class="tb-mid">Free estimates · Residential &amp; commercial</span>
   <span class="tb-hours">{icon('clock')} Mon–Fri 8–5 · Sat 9–5</span>
 </div></div>
 <header class="site-head"><div class="wrap head-in">
@@ -498,12 +528,14 @@ def footer(p):
     svc = "".join(f'<li><a href="{p}services/{s["slug"]}/">{s["name"]}</a></li>' for s in SERVICES)
     towns = "".join(f'<li><a href="{p}{u}/">{t}, GA</a></li>' for t, u in TOWN_PAGES.items())
     return f"""<footer class="site-foot">
+  <div class="wrap foot-top">
+    <p class="foot-big"><a href="tel:{B['tel']}">{B['phone']}</a></p>
+    <p class="foot-tag">{B['tagline']}</p>
+  </div>
   <div class="wrap foot-grid">
     <div class="foot-id">
       <p class="foot-name">{B['name']}</p>
-      <p class="foot-tag">{B['tagline']}</p>
       <p>Family-owned tree service in Loganville, GA {B['zip']}. ISA Certified Arborist {B['arborist']} on staff. Residential and commercial.</p>
-      <p><a class="foot-phone" href="tel:{B['tel']}">{B['phone']}</a></p>
       {hours_dl()}
       <p class="small">{confirm(C_HOURS)}</p>
       <p class="foot-links"><a class="social" href="{B['facebook']}" rel="noopener">{icon('facebook')} Facebook</a>
@@ -514,7 +546,7 @@ def footer(p):
     <div><p class="foot-h">Towns</p><ul>{towns}<li><a href="{p}{AREAS}">All service areas</a></li></ul>
       <p class="foot-h">Company</p><ul><li><a href="{p}about/">About &amp; credentials</a></li><li><a href="{p}testimonials/">Customer reviews</a></li><li><a href="{p}faq/">FAQ</a></li><li><a href="{p}contact/">Contact &amp; free estimate</a></li></ul></div>
   </div>
-  <div class="wrap foot-base"><p>© {TODAY[:4]} {B['name']} · Private preview, not the live site.</p></div>
+  <div class="wrap foot-base"><p>© {TODAY[:4]} {B['name']} · Private preview, not the live site. Photos are samples.</p></div>
 </footer>
 <a class="callbar" href="tel:{B['tel']}">{icon('phone')}<span>Call {B['phone']}</span></a>"""
 
@@ -532,7 +564,7 @@ def page(path, title, meta, body, current="", schema_extra=(), trail=None):
         items = "".join(
             (f'<li><a href="{p}{u.lstrip("/")}">{n}</a></li>' if i < len(trail) - 1 else f'<li aria-current="page">{n}</li>')
             for i, (n, u) in enumerate(trail))
-        crumbs = f'<nav class="crumbs wrap" aria-label="Breadcrumb"><ol>{items}</ol></nav>'
+        crumbs = f'<nav class="crumbs" aria-label="Breadcrumb"><ol class="wrap">{items}</ol></nav>'
     doc = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -546,10 +578,10 @@ def page(path, title, meta, body, current="", schema_extra=(), trail=None):
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(meta)}">
 <meta property="og:url" content="{canon}">
-<meta name="theme-color" content="#1d3a29">
+<meta name="theme-color" content="#12110e">
 <link rel="icon" href="{p}assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="{p}assets/fonts/zilla-slab-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{p}assets/fonts/public-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{p}assets/fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{p}assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{p}assets/site.css">
 <script type="application/ld+json">
 {ld}
@@ -557,8 +589,8 @@ def page(path, title, meta, body, current="", schema_extra=(), trail=None):
 </head>
 <body>
 {header(p, current)}
-{crumbs}
 <main id="main">
+{crumbs}
 {body.replace('{P}', p)}
 </main>
 {footer(p)}
@@ -581,19 +613,38 @@ PAGES = []
 
 # ---------------------------------------------------------------- shared blocks
 def photo(alt, note, cls=""):
-    """Placeholder until real job photos arrive. Most photos on the current site are stock, so none are reused as job photos."""
+    """Empty slot for a photo only the owner can supply (owners, arborist portrait, local jobs)."""
     return (f'<figure class="photo-slot {cls}"><div class="ph" role="img" aria-label="{html.escape(alt)}">{icon("camera")}</div>'
             f'<figcaption>{confirm(note)}<span class="alt-note">Alt text ready: “{html.escape(alt)}”</span></figcaption></figure>')
 
 
+def page_hero(h1, lead, key, actions=True, extra=""):
+    btns = f"""<div class="hero-actions">
+      <a class="btn btn-call btn-big" href="tel:{B['tel']}">{icon('phone')}<span>Call {B['phone']}</span></a>
+      <a class="btn btn-ghost" href="{{P}}contact/#quote">Free estimate</a>
+    </div>""" if actions else ""
+    return f"""<section class="page-hero" style="{bg(key)}">
+  <div class="wrap page-hero-in">
+    <h1>{h1}</h1>
+    <p class="lead">{lead}</p>
+    {extra}{btns}
+  </div>
+  <span class="sample">Sample photo</span>
+</section>"""
+
+
+def stars():
+    return '<span class="stars" aria-label="5 out of 5 stars">★★★★★</span>'
+
+
 def review_tag(name, text):
-    return (f'<li class="tag"><span class="tag-hole" aria-hidden="true"></span><blockquote><p>{html.escape(text)}</p></blockquote>'
-            f'<p class="tag-who"><strong>{html.escape(name)}</strong><span>Google review</span></p></li>')
+    return (f'<li class="review"><span class="q" aria-hidden="true">“</span>{stars()}<blockquote><p>{html.escape(text)}</p></blockquote>'
+            f'<p class="who"><strong>{html.escape(name)}</strong><span>Google review</span></p></li>')
 
 
 def faq_block(faqs, heading="Questions customers ask"):
-    items = "".join(f'<details class="qa"><summary><h3>{html.escape(q)}</h3></summary><p>{a}</p></details>' for q, a in faqs)
-    return f'<section class="band band-kraft"><div class="wrap narrow"><h2>{heading}</h2><div class="qa-list">{items}</div></div></section>'
+    items = "".join(f'<details class="qa"><summary><h3>{html.escape(q)}</h3><span class="qa-x" aria-hidden="true"></span></summary><p>{a}</p></details>' for q, a in faqs)
+    return f'<section class="band band-bone"><div class="wrap faq-wrap"><h2>{heading}</h2><div class="qa-list">{items}</div></div></section>'
 
 
 def towns_block(service=None, intro=None):
@@ -601,110 +652,104 @@ def towns_block(service=None, intro=None):
         f'<li><a href="{{P}}{TOWN_PAGES[t]}/">{t}</a></li>' if t in TOWN_PAGES else f"<li>{t}</li>" for t in TOWNS)
     q = f"Which towns do you serve for {service.lower()}?" if service else "Which towns do you serve?"
     a = intro or ("We serve Loganville and 27 nearby towns across Gwinnett, Walton, and Metro Atlanta.")
-    return f"""<section class="band band-pine towns"><div class="wrap">
+    return f"""<section class="towns" style="{bg('aerial')}"><div class="wrap">
   <h2>{q}</h2>
   <p class="answer">{a}</p>
   <ul class="town-list">{lis}</ul>
-  <p><a class="link-light" href="{{P}}{AREAS}">See all service areas</a></p>
-</div></section>"""
+  <p><a class="link-hot" href="{{P}}{AREAS}">See all service areas</a></p>
+</div><span class="sample">Sample photo</span></section>"""
 
 
 def cta_block(heading="Have a tree that needs looking at?"):
-    return f"""<section class="cta"><div class="wrap cta-in">
+    return f"""<section class="cta" style="{bg('dusk')}"><div class="wrap cta-in">
   <h2>{heading}</h2>
-  <p>Call and talk to the family that runs the business. Estimates are free, and we can often come out the same day.</p>
+  <p>Talk to the family that runs the business. Estimates are free, and we can often come out the same day.</p>
+  <a class="cta-phone" href="tel:{B['tel']}">{B['phone']}</a>
   <div class="cta-actions">
-    <a class="btn btn-call btn-big" href="tel:{B['tel']}">{icon('phone')}<span>Call {B['phone']}</span></a>
+    <a class="btn btn-call btn-big" href="tel:{B['tel']}">{icon('phone')}<span>Call now</span></a>
     <a class="btn btn-ghost" href="{{P}}contact/#quote">Request a free estimate</a>
   </div>
-</div></section>"""
-
-
-def seal(top, mid, bottom, cls="", note=""):
-    return (f'<li class="seal {cls}"><span class="seal-ring"><span class="seal-top">{top}</span>'
-            f'<span class="seal-mid">{mid}</span><span class="seal-bot">{bottom}</span></span>{note}</li>')
+</div><span class="sample">Sample photo</span></section>"""
 
 
 def cred_strip():
+    items = [
+        ("ISA Certified Arborist", f"{B['arborist']} on staff", confirm(C_ARBORIST)),
+        ("Licensed &amp; Insured", "Residential &amp; commercial", confirm(C_INSURED)),
+        ("BBB", "Profile and rating", confirm("BBB profile: does the company have one? If not, remove this item")),
+        (f"Since {B['founded']}", "Family-owned in Loganville", confirm(C_YEAR)),
+    ]
+    lis = "".join(f'<li><strong>{a}</strong><span>{b}</span>{c}</li>' for a, b, c in items)
     return f"""<section class="creds" aria-labelledby="creds-h"><div class="wrap">
   <h2 id="creds-h" class="sr-only">Credentials</h2>
-  <ul class="seal-row">
-    {seal('ISA', 'Certified Arborist', B['arborist'], 'seal-a')}
-    {seal('Fully', 'Licensed &amp; Insured', 'Residential · Commercial', 'seal-b', confirm(C_INSURED))}
-    {seal('BBB', 'Profile', 'Rating', 'seal-c seal-pending', confirm("BBB profile: does the company have one? If not, remove this seal"))}
-    {seal('Since', B['founded'], 'Loganville, GA', 'seal-d', confirm(C_YEAR))}
-  </ul>
+  <ul class="cred-row">{lis}</ul>
 </div></section>"""
 
 
-TREE_SVG = """<svg class="hero-tree" viewBox="0 0 480 420" aria-hidden="true" focusable="false">
-  <path class="canopy" d="M70 228c-34-6-52-36-40-64 8-20 28-30 48-28-4-30 18-56 48-60 10-30 42-48 74-40 18-22 52-28 78-12 26-14 60-6 74 20 32-2 58 22 58 52 26 8 40 34 32 60 18 18 18 48-2 64-6 28-34 44-62 38-14 20-42 28-64 18-20 14-48 14-66 0-22 12-50 10-66-6-24 8-50 0-62-18-26 4-48-6-50-24Z"/>
-  <g class="limbs" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M220 330c-2-40-6-70-20-96-16-30-44-52-82-64M206 238c-6-30-2-62 12-92M224 300c10-44 34-78 74-100 22-12 44-16 70-12M298 200c4-26-2-52-16-74M150 182c-14-18-34-28-60-30M262 236c26 2 48 12 66 30M180 214c-22 4-44 16-60 34"/>
-  </g>
-  <path class="trunk" d="M196 392c14-30 18-64 14-104l28-4c-4 44 2 80 18 108Z"/>
-  <path class="ground" d="M60 396c50-10 104-14 160-14s110 4 160 14"/>
-</svg>"""
+def ticker():
+    words = "".join(f"<span>{s['name']}</span>" for s in SERVICES)
+    return f'<div class="ticker" aria-hidden="true"><div class="ticker-track">{words}{words}</div></div>'
+
+
+def tiles(services, cls="bento", heading_tag="h3"):
+    return f'<ul class="{cls}">' + "".join(f"""<li class="tile tile-{s['icon']}">
+      <a href="{{P}}services/{s['slug']}/" style="{bg(SVC_PHOTO[s['icon']])}">
+        <span class="tile-body"><{heading_tag} class="tile-h">{s['name']}</{heading_tag}><span class="tile-line">{s['line']}</span>
+        <span class="tile-go">See {s['name'].lower()}</span></span>
+      </a></li>""" for s in services) + "</ul>"
 
 
 # ---------------------------------------------------------------- HOME
 def build_home():
-    svc_rows = "".join(f"""<li class="board-row">
-      <span class="board-ico">{icon(s['icon'])}</span>
-      <div class="board-text"><h3><a href="{{P}}services/{s['slug']}/">{s['name']}</a></h3><p>{s['line']}</p></div>
-      <a class="board-go" href="{{P}}services/{s['slug']}/" aria-label="{s['name']} details">Details</a>
-    </li>""" for s in SERVICES)
     why = [
-        ("family", "Family-run since " + B["founded"], "A husband-and-wife team started the company and still runs it. You talk to the owners, not a call center."),
-        ("badge", "ISA Certified Arborist on staff", f"{B['arborist']} is an ISA Certified Arborist, so decisions about pruning, saving, or removing a tree rest on real training."),
-        ("shield", "Licensed and insured", "Your home and our crew are protected on every job, and we leave no mess behind. " + confirm(C_INSURED)),
-        ("recycling", "Wood that gets a second life", "Instead of the landfill, branches become mulch, logs go to local mills, and leftover hardwood becomes firewood. Wood chips are free."),
-        ("bolt", "Free, same-day estimates", "Estimates are free and no-obligation, and customers often tell us we came out the same day they called."),
+        ("Family-run since " + B["founded"], "A husband-and-wife team started the company and still runs it. You talk to the owners, not a call center."),
+        ("ISA Certified Arborist on staff", f"{B['arborist']} is an ISA Certified Arborist, so decisions about pruning, saving, or removing a tree rest on real training."),
+        ("Licensed and insured", "Your home and our crew are protected on every job, and we leave no mess behind. " + confirm(C_INSURED)),
+        ("Wood that gets a second life", "Instead of the landfill, branches become mulch, logs go to local mills, and leftover hardwood becomes firewood. Wood chips are free."),
+        ("Free, same-day estimates", "Estimates are free and no-obligation, and customers often tell us we came out the same day they called."),
     ]
-    why_html = "".join(f'<li>{icon(i, "ico why-ico")}<div><h3>{h}</h3><p>{t}</p></div></li>' for i, h, t in why)
+    why_html = "".join(f'<li><h3>{h}</h3><p>{t}</p></li>' for h, t in why)
     rev = "".join(review_tag(n, q) for n, q in REVIEWS if n in HOME_REVIEWS)
     body = f"""
-<section class="hero"><div class="wrap hero-in">
-  <div class="hero-copy">
+<section class="hero" style="{bg('hero')}">
+  <div class="wrap hero-in">
     <h1>{HOME_FIRST}</h1>
-    <p class="hero-confirm">{confirm(C_YEAR)} {confirm(C_ARBORIST)}</p>
     <p class="hero-sub">Tree removal, trimming, storm clean-up, stump grinding, and seasoned firewood for homes and businesses.</p>
     <div class="hero-actions">
       <a class="btn btn-call btn-big" href="tel:{B['tel']}">{icon('phone')}<span>Call {B['phone']}</span></a>
-      <a class="btn btn-ghost" href="{{P}}contact/#quote">Request a free estimate</a>
+      <a class="btn btn-ghost" href="{{P}}contact/#quote">Get a free estimate</a>
     </div>
   </div>
-  <div class="hero-art">
-    {TREE_SVG}
-    <div class="stamp" aria-hidden="true"><span>Since</span><strong>{B['founded']}</strong><span>Loganville GA</span></div>
-  </div>
-</div></section>
+  <span class="sample">Sample photo</span>
+</section>
 {cred_strip()}
-<section class="band band-kraft" id="services"><div class="wrap">
+{ticker()}
+<section class="band band-bone" id="services"><div class="wrap">
   <div class="section-head">
     <h2>What tree services do you offer?</h2>
     <p class="answer">We remove, trim, and prune trees, clear storm damage, grind stumps, recycle wood, and sell seasoned firewood, for homes and businesses.</p>
   </div>
-  <ul class="board">{svc_rows}</ul>
+  {tiles(SERVICES)}
 </div></section>
-<section class="band why"><div class="wrap why-grid">
+<section class="band band-ink why"><div class="wrap why-grid">
   <div class="why-head">
+    <p class="big-year" aria-hidden="true">{B['founded']}</p>
     <h2>Why choose Lee Friend's Tree Service?</h2>
     <p class="answer">Because a family that has done this work since {B['founded']} runs every job, with a certified arborist making the calls about your trees.</p>
-    {photo("Lee Friend's Tree Service crew and truck on a job in Loganville GA", "Real crew or family photo. Most current-site photos are stock; the one real crew shot is home-imge-1.webp (loader carrying a log)")}
+    {shot('arborist', "Replace with a real photo of Jennifer Perrone or the crew on a job")}
   </div>
-  <ul class="why-list">{why_html}</ul>
+  <ol class="why-list">{why_html}</ol>
 </div></section>
-<section class="band band-kraft reviews"><div class="wrap">
+<section class="band band-bone reviews"><div class="wrap">
   <div class="section-head">
     <h2>What do customers say about Lee Friend's?</h2>
     <p class="answer">Customers on Google mention fair prices, careful work in tight spots, fast response, and crews that clean up after themselves.</p>
   </div>
-  <ul class="tags">{rev}</ul>
-  <p class="more"><a href="{{P}}testimonials/">Read all 12 customer reviews</a></p>
+  <ul class="review-row">{rev}</ul>
+  <p class="more"><a class="link-strong" href="{{P}}testimonials/">Read all 12 customer reviews</a></p>
 </div></section>
 {towns_block()}
-{cta_block("Need a tree looked at? Call the family.")}
+{cta_block("Got a tree problem? Call the family.")}
 """
     page("index.html", "Tree Service in Loganville, GA | Lee Friend's Tree Service, Inc.",
          "Family-owned tree service in Loganville, GA with an ISA Certified Arborist on staff. Tree removal, trimming, storm damage, stump grinding, firewood. (770) 466-5112.",
@@ -716,9 +761,8 @@ def build_services():
     for s in SERVICES:
         when = "".join(f"<li>{icon('check')}<span>{w}</span></li>" for w in s["when"])
         steps = "".join(f'<li><h3>{h}</h3><p>{t}</p></li>' for h, t in s["steps"])
-        others = "".join(f'<li><a href="{{P}}services/{o["slug"]}/">{icon(o["icon"])}<span>{o["name"]}</span></a></li>'
-                         for o in SERVICES if o is not s)
         n = s["name"].lower()
+        key = SVC_PHOTO[s["icon"]]
         svc_ld = {
             "@type": "Service", "@id": f"{SITE}/services/{s['slug']}/#service", "name": s["name"],
             "serviceType": s["name"], "description": plain(s["answer"]),
@@ -727,18 +771,8 @@ def build_services():
             "url": f"{SITE}/services/{s['slug']}/",
         }
         body = f"""
-<section class="page-hero"><div class="wrap page-hero-in">
-  <div>
-    <h1>{s['name']} in Loganville, GA</h1>
-    <p class="lead">{s['answer']}</p>
-    <div class="hero-actions">
-      <a class="btn btn-call btn-big" href="tel:{B['tel']}">{icon('phone')}<span>Call {B['phone']}</span></a>
-      <a class="btn btn-ghost" href="{{P}}contact/#quote">Request a free estimate</a>
-    </div>
-  </div>
-  <div class="page-hero-ico">{icon(s['icon'], 'ico big-ico')}</div>
-</div></section>
-<section class="band"><div class="wrap two-col">
+{page_hero(f"{s['name']} in Loganville, GA", s['answer'], key)}
+<section class="band band-bone"><div class="wrap two-col">
   <div class="prose">
     <h2>What is {n}?</h2>
     <p class="answer">{s['what']}</p>
@@ -748,19 +782,18 @@ def build_services():
     <p class="answer">Call when a tree shows any of these signs, or if you're unsure and want an arborist's opinion.</p>
     <ul class="checks">{when}</ul>
   </div>
-  {photo(f"{s['name']} by Lee Friend's Tree Service in Loganville GA", f"A real {n} job photo (the current site's {n} photo is stock)")}
+  {shot(key, f"Replace with a real {n} job photo")}
 </div></section>
-<section class="band band-pine"><div class="wrap">
+<section class="band band-ink"><div class="wrap">
   <h2>How does {n} work with Lee Friend's?</h2>
   <p class="answer">Here's what happens from your first call to the finished job.</p>
   <ol class="steps">{steps}</ol>
 </div></section>
 {faq_block(s['faq'], f"Questions about {n}")}
-<section class="band"><div class="wrap">
+<section class="band band-ink"><div class="wrap">
   <h2>What other tree services do you offer?</h2>
-  <p class="answer">Most jobs combine a few of these. Ask about any of them when you call.</p>
-  <ul class="svc-links">{others}</ul>
-  <p class="more">Have another question? Read the <a href="{{P}}faq/">tree service FAQ</a> or learn <a href="{{P}}about/">about our family and arborist</a>.</p>
+  <p class="answer">Most jobs combine a few of these. Ask about any of them when you call. Have another question? Read the <a class="link-hot" href="{{P}}faq/">tree service FAQ</a> or learn <a class="link-hot" href="{{P}}about/">about our family and arborist</a>.</p>
+  {tiles([o for o in SERVICES if o is not s], "bento bento-mini")}
 </div></section>
 {towns_block(s['name'], f"We offer {n} in Loganville and these nearby towns across Gwinnett, Walton, and Metro Atlanta.")}
 {cta_block(f"Ready to talk about {n}?")}
@@ -769,17 +802,9 @@ def build_services():
              schema_extra=[svc_ld, faq_schema(s["faq"])],
              trail=[("Home", "/"), ("Services", "/services/"), (s["name"], f"/services/{s['slug']}/")])
 
-    rows = "".join(f"""<li class="board-row">
-      <span class="board-ico">{icon(s['icon'])}</span>
-      <div class="board-text"><h2 class="h3"><a href="{{P}}services/{s['slug']}/">{s['name']}</a></h2><p>{s['answer']}</p></div>
-      <a class="board-go" href="{{P}}services/{s['slug']}/" aria-label="{s['name']} details">Details</a>
-    </li>""" for s in SERVICES)
     body = f"""
-<section class="page-hero"><div class="wrap">
-  <h1>Tree Services in Loganville, GA</h1>
-  <p class="lead">Lee Friend's Tree Service offers six services for homes and businesses in Loganville, GA and the Metro Atlanta area: tree removal, tree trimming and pruning, storm damage tree removal, stump grinding, eco-friendly wood recycling, and firewood sales.</p>
-</div></section>
-<section class="band band-kraft"><div class="wrap"><ul class="board">{rows}</ul></div></section>
+{page_hero("Tree Services in Loganville, GA", "Lee Friend's Tree Service offers six services for homes and businesses in Loganville, GA and the Metro Atlanta area: tree removal, tree trimming and pruning, storm damage tree removal, stump grinding, eco-friendly wood recycling, and firewood sales.", "removal")}
+<section class="band band-bone"><div class="wrap">{tiles(SERVICES, "bento", "h2")}</div></section>
 {towns_block()}
 {cta_block()}
 """
@@ -791,11 +816,11 @@ def build_services():
 # ---------------------------------------------------------------- ABOUT
 def build_about():
     body = f"""
-<section class="page-hero"><div class="wrap">
+<section class="page-hero" style="{bg('arborist')}"><div class="wrap page-hero-in">
   <h1>About Lee Friend's Tree Service</h1>
   <p class="lead">Lee Friend's Tree Service, Inc. is a family-owned tree company in Loganville, GA, founded in {B['founded']} by a husband-and-wife team and still run by them today, with ISA Certified Arborist {B['arborist']} on staff. {confirm(C_YEAR)}</p>
-</div></section>
-<section class="band"><div class="wrap two-col">
+</div><span class="sample">Sample photo</span></section>
+<section class="band band-bone"><div class="wrap two-col">
   <div class="prose">
     <h2>How did Lee Friend's Tree Service start?</h2>
     <p class="answer">The company began in {B['founded']} as a passion project for a husband-and-wife team who loved working outdoors and wanted to build something meaningful.</p>
@@ -809,7 +834,7 @@ def build_about():
   </div>
   {photo("Owners of Lee Friend's Tree Service, the husband-and-wife team, in Loganville GA", "Photo of the owners")}
 </div></section>
-<section class="band band-kraft" id="arborist"><div class="wrap arborist">
+<section class="band band-bone" id="arborist"><div class="wrap arborist">
   {photo(f"{B['arborist']}, ISA Certified Arborist at Lee Friend's Tree Service in Loganville GA", "Photo of Jennifer Perrone", "portrait")}
   <div class="prose">
     <h2>Who is your certified arborist?</h2>
@@ -820,11 +845,11 @@ def build_about():
     <p class="verify">You can verify her ISA credential yourself at <a href="https://www.treesaregood.org/findanarborist/verify" rel="noopener">treesaregood.org</a>, the International Society of Arboriculture's public site.</p>
   </div>
 </div></section>
-<section class="band band-pine" id="credentials"><div class="wrap">
+<section class="band band-ink" id="credentials"><div class="wrap">
   <h2>What credentials does Lee Friend's Tree Service have?</h2>
   <p class="answer">An ISA Certified Arborist on staff, licensed and insured, and in business since {B['founded']}.</p>
   <ul class="cred-list">
-    <li>{icon('badge')}<div><h3>ISA Certified Arborist</h3><p>{B['arborist']}. <a class="link-light" href="https://www.treesaregood.org/findanarborist/verify" rel="noopener">Verify at treesaregood.org</a>. {confirm("Direct link to Jennifer Perrone's ISA profile or certification number")}</p></div></li>
+    <li>{icon('badge')}<div><h3>ISA Certified Arborist</h3><p>{B['arborist']}. <a class="link-hot" href="https://www.treesaregood.org/findanarborist/verify" rel="noopener">Verify at treesaregood.org</a>. {confirm("Direct link to Jennifer Perrone's ISA profile or certification number")}</p></div></li>
     <li>{icon('shield')}<div><h3>Licensed &amp; insured</h3><p>{confirm(C_INSURED)}</p></div></li>
     <li>{icon('check')}<div><h3>Better Business Bureau</h3><p>{confirm("BBB profile URL and rating, or remove this item if there is no profile")}</p></div></li>
     <li>{icon('family')}<div><h3>Tree Care Industry Association (TCIA)</h3><p>{confirm("TCIA membership: confirm, or remove this item")}</p></div></li>
@@ -841,11 +866,11 @@ def build_about():
 def build_faq():
     items = "".join(f'<div class="qa-open"><h2>{html.escape(q)}</h2><p>{a}</p></div>' for q, a in GENERAL_FAQ)
     body = f"""
-<section class="page-hero"><div class="wrap">
+<section class="page-hero" style="{bg('trimming')}"><div class="wrap page-hero-in">
   <h1>Tree Service FAQ for Loganville, GA</h1>
   <p class="lead">Straight answers to the questions homeowners in Loganville and Metro Atlanta ask most about tree removal, insurance, stump grinding, and firewood. Don't see yours? Call {B['phone']}.</p>
-</div></section>
-<section class="band band-kraft"><div class="wrap narrow faq-page">{items}
+</div><span class="sample">Sample photo</span></section>
+<section class="band band-bone"><div class="wrap narrow faq-page">{items}
   <p class="more">More detail on each service: {", ".join(f'<a href="{{P}}services/{s["slug"]}/">{s["name"]}</a>' for s in SERVICES)}.</p>
 </div></section>
 {cta_block("Still have a question? Ask us.")}
@@ -861,22 +886,22 @@ def build_areas():
                       for t, u in TOWN_PAGES.items())
     allt = "".join(f"<li>{t}, GA</li>" for t in TOWNS)
     body = f"""
-<section class="page-hero"><div class="wrap">
+<section class="page-hero" style="{bg('aerial')}"><div class="wrap page-hero-in">
   <h1>Tree Service Areas Around Loganville, GA</h1>
   <p class="lead">Lee Friend's Tree Service is based in Loganville, GA and serves 28 towns across Gwinnett County, Walton County, and the Metro Atlanta area.</p>
-</div></section>
-<section class="band band-kraft"><div class="wrap">
+</div><span class="sample">Sample photo</span></section>
+<section class="band band-bone"><div class="wrap">
   <h2>Where are you based?</h2>
   <p class="answer">In Loganville, GA {B['zip']}, on the Walton and Gwinnett County line. {confirm(C_STREET)}</p>
   <ul class="feature-towns">{feature}</ul>
 </div></section>
-<section class="band"><div class="wrap">
+<section class="band band-bone"><div class="wrap">
   <h2>Which towns do you serve?</h2>
   <p class="answer">All of these, for every service we offer.</p>
   <ul class="all-towns">{allt}</ul>
   <p class="more">Not sure if you're in range? Call {B['phone']}. <a href="{B['maps']}" rel="noopener">Find us on Google Maps</a>.</p>
 </div></section>
-<section class="band band-pine"><div class="wrap">
+<section class="band band-ink"><div class="wrap">
   <h2>What services do you offer in these towns?</h2>
   <p class="answer">Every service, everywhere we work.</p>
   <ul class="svc-links light">{"".join(f'<li><a href="{{P}}services/{s["slug"]}/">{icon(s["icon"])}<span>{s["name"]}</span></a></li>' for s in SERVICES)}</ul>
@@ -893,25 +918,25 @@ def build_areas():
         others = "".join(f'<li><a href="{{P}}{u}/">{o}, GA</a></li>' for o, u in TOWN_PAGES.items() if o != t)
         svcs = "".join(f'<li><a href="{{P}}services/{s["slug"]}/">{icon(s["icon"])}<span>{s["name"]} in {t}</span></a></li>' for s in SERVICES)
         body = f"""
-<section class="page-hero"><div class="wrap">
+<section class="page-hero" style="{bg('hero')}"><div class="wrap page-hero-in">
   <h1>{d['h1']}</h1>
   <p class="lead">{d['answer']}</p>
   <div class="hero-actions">
     <a class="btn btn-call btn-big" href="tel:{B['tel']}">{icon('phone')}<span>Call {B['phone']}</span></a>
     <a class="btn btn-ghost" href="{{P}}contact/#quote">Request a free estimate</a>
   </div>
-</div></section>
-<section class="band"><div class="wrap two-col">
+</div><span class="sample">Sample photo</span></section>
+<section class="band band-bone"><div class="wrap two-col">
   <div class="prose">{secs}</div>
   {photo(f"Lee Friend's Tree Service crew working on a tree in {t} GA", f"A real job photo from {t}")}
 </div></section>
-<section class="band band-pine"><div class="wrap">
+<section class="band band-ink"><div class="wrap">
   <h2>Which tree services do you offer in {t}?</h2>
   <p class="answer">All six of our services are available in {t}.</p>
   <ul class="svc-links light">{svcs}</ul>
 </div></section>
 {faq_block(d['faq'], f"Questions from {t} customers")}
-<section class="band"><div class="wrap">
+<section class="band band-bone"><div class="wrap">
   <h2>Do you serve towns near {t}?</h2>
   <p class="answer">Yes. We serve 28 towns around Loganville, including these.</p>
   <ul class="feature-towns small">{others}<li><a href="{{P}}{AREAS}"><span class="fa-town">All service areas</span></a></li></ul>
@@ -927,11 +952,11 @@ def build_areas():
 def build_testimonials():
     tags = "".join(review_tag(n, q) for n, q in REVIEWS)
     body = f"""
-<section class="page-hero"><div class="wrap">
+<section class="page-hero" style="{bg('removal')}"><div class="wrap page-hero-in">
   <h1>Customer Reviews of Lee Friend's Tree Service</h1>
   <p class="lead">Customers on Google give Lee Friend's Tree Service five stars for fair prices, careful work, fast response, and clean job sites. Here are 12 of their reviews, word for word.</p>
-</div></section>
-<section class="band band-kraft"><div class="wrap">
+</div><span class="sample">Sample photo</span></section>
+<section class="band band-bone"><div class="wrap">
   <ul class="tags tags-all">{tags}</ul>
   <p class="more">Worked with us? <a href="{B['review']}" rel="noopener">Leave a review on Google</a> or <a href="{B['maps']}" rel="noopener">see us on Google Maps</a>.</p>
 </div></section>
@@ -946,11 +971,11 @@ def build_testimonials():
 def build_contact():
     svc_opts = "".join(f"<option>{s['name']}</option>" for s in SERVICES)
     body = f"""
-<section class="page-hero"><div class="wrap">
+<section class="page-hero" style="{bg('dusk')}"><div class="wrap page-hero-in">
   <h1>Contact Lee Friend's Tree Service in Loganville, GA</h1>
   <p class="lead">The fastest way to reach us is to call {B['phone']}. You can also send the quote form below and we'll call you back.</p>
-</div></section>
-<section class="band band-kraft"><div class="wrap contact-grid">
+</div><span class="sample">Sample photo</span></section>
+<section class="band band-bone"><div class="wrap contact-grid">
   <div class="contact-card">
     <h2>How do I reach you?</h2>
     <p class="answer">Call <a class="big-phone" href="tel:{B['tel']}">{B['phone']}</a></p>
